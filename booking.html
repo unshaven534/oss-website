@@ -543,7 +543,7 @@
 
     <div class="modal-actions">
       <button class="btn-cancel" onclick="closeModal()">Go back</button>
-      <button class="btn btn-accent" onclick="confirmBooking()">Confirm booking →id="confirmBtn"</button>
+      <button class="btn btn-accent" id="confirmBtn" onclick="confirmBooking()">Confirm booking →</button>
     </div>
   </div>
 </div>
@@ -761,13 +761,11 @@ function closeModal() {
   document.getElementById('step2-indicator').classList.remove('active');
 }
 
-async function confirmBooking() {
+function confirmBooking() {
   // Basic validation
-  const name     = document.getElementById('bkName').value.trim();
-  const company  = document.getElementById('bkCompany').value.trim();
-  const email    = document.getElementById('bkEmail').value.trim();
-  const phone    = document.getElementById('bkPhone').value.trim();
-  const topic    = document.getElementById('bkTopic').value.trim();
+  const name = document.getElementById('bkName').value.trim();
+  const company = document.getElementById('bkCompany').value.trim();
+  const email = document.getElementById('bkEmail').value.trim();
 
   if (!name || !company || !email) {
     alert('Please fill in your name, company, and email before confirming.');
@@ -781,45 +779,10 @@ async function confirmBooking() {
   const { dateStr, time, dateObj } = selectedSlotInfo;
   const key = slotKey(dateStr, time);
 
-  // Disable button to prevent double submit
-  const btn = document.getElementById('confirmBtn');
-  btn.disabled = true;
-  btn.textContent = 'Submitting...';
-
-  // ── POST to Formspree ──────────────────────────────────────────
-  try {
-    const response = await fetch('https://formspree.io/f/xgoryqbz', {
-      method: 'POST',
-      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        name:    name,
-        company: company,
-        email:   email,
-        phone:   phone || 'Not provided',
-        topic:   topic || 'Not specified',
-        date:    friendlyFull(dateObj),
-        time:    time,
-        slot:    dateStr + ' ' + time
-      })
-    });
-
-    if (!response.ok) {
-      const data = await response.json();
-      throw new Error(data.errors ? data.errors.map(e => e.message).join(', ') : 'Submission failed');
-    }
-  } catch (err) {
-    btn.disabled = false;
-    btn.textContent = 'Confirm booking →';
-    alert('There was a problem submitting your booking. Please try again or contact us directly.');
-    console.error('Formspree error:', err);
-    return;
-  }
-  // ──────────────────────────────────────────────────────────────
-
   // Mark this slot as "mine"
   bookedSlots[key] = 'mine';
 
-  // Block buffer slots
+  // Block the slots immediately before and after (buffer)
   const idx = ALL_SLOTS.indexOf(time);
   if (idx > 0) bookedSlots[slotKey(dateStr, ALL_SLOTS[idx - 1])] = 'booked';
   if (idx < ALL_SLOTS.length - 1) bookedSlots[slotKey(dateStr, ALL_SLOTS[idx + 1])] = 'booked';
@@ -837,16 +800,11 @@ async function confirmBooking() {
   document.getElementById('successDetail').textContent =
     '📅  ' + friendlyFull(dateObj) + ' · ' + time + ' (30 min)';
 
-  // Step indicator — done
+  // Step 3 done
   document.getElementById('step2-indicator').classList.remove('active');
   document.getElementById('step2-indicator').classList.add('done');
   document.getElementById('step3-indicator').classList.add('active');
   document.getElementById('step3-indicator').classList.add('done');
-}
-
-  // In a real deployment, POST to your backend/Formspree here.
-  console.log('Booking confirmed:', { name, company, email, dateStr, time });
-}
 
 // Close modal on overlay click
 document.getElementById('modalOverlay').addEventListener('click', function(e) {
