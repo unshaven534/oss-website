@@ -47,7 +47,9 @@
           <h3>Tell us about your business</h3>
           <p style="font-size:0.95rem; color:var(--gray-500); margin-bottom:28px; line-height:1.5;">We'll get back to you within 2 business hours to arrange your free consultation.</p>
 
-          <form id="contactForm" action="https://formspree.io/f/xgoryqbz" method="POST">
+          <form id="contactForm" action="https://formspree.io/f/xqewdlaj" method="POST">
+            <input type="hidden" name="_replyto" id="replyto">
+            <input type="hidden" name="_subject" id="formsubject" value="New Enquiry via OSS Contact Form">
             <div class="form-row">
               <div class="form-group">
                 <label for="name">Your name *</label>
@@ -119,9 +121,15 @@
             <p class="form-note">By submitting this form you agree to us contacting you about your enquiry. We don't send marketing emails and don't share your details with anyone.</p>
 
             <div class="form-submit">
-              <button type="submit" class="btn btn-accent btn-large btn-block">Send enquiry →</button>
+              <button type="submit" id="contactSubmitBtn" class="btn btn-accent btn-large btn-block">Send enquiry →</button>
             </div>
-          </form>
+
+            <div id="formSuccess" style="display:none; background:#DCFCE7; border:1px solid #86EFAC; border-radius:8px; padding:16px 20px; margin-top:16px; color:#15803D; font-size:0.95rem; line-height:1.5;">
+              ✓ <strong>Message sent!</strong> We'll get back to you at your email within 2 business hours.
+            </div>
+            <div id="formError" style="display:none; background:#FCEAEA; border:1px solid #F7C1C1; border-radius:8px; padding:16px 20px; margin-top:16px; color:#B02020; font-size:0.95rem;">
+              Something went wrong. Please try again or email us directly at <a href="mailto:admin@overwatch.com.sg" style="color:#B02020;">admin@overwatch.com.sg</a>.
+            </div>
         </div>
       </div>
 
@@ -221,5 +229,45 @@
   </div>
 </footer>
 <script src="js/main.js"></script>
-</body>
+<script>
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const btn = document.getElementById('contactSubmitBtn');
+  const successBox = document.getElementById('formSuccess');
+  const errorBox = document.getElementById('formError');
+
+  // Set _replyto and _subject dynamically from email/name fields
+  const emailVal = document.getElementById('email').value.trim();
+  const nameVal  = document.getElementById('name').value.trim();
+  const company  = document.getElementById('company').value.trim();
+  document.getElementById('replyto').value = emailVal;
+  document.getElementById('formsubject').value = 'New Enquiry from ' + nameVal + ' (' + company + ')';
+
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+  successBox.style.display = 'none';
+  errorBox.style.display = 'none';
+
+  try {
+    const response = await fetch('https://formspree.io/f/xqewdlaj', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: new FormData(this)
+    });
+
+    if (response.ok) {
+      successBox.style.display = 'block';
+      this.reset();
+      btn.textContent = 'Sent ✓';
+    } else {
+      throw new Error('Server error');
+    }
+  } catch (err) {
+    errorBox.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'Send enquiry →';
+  }
+});
+</script>
 </html>
