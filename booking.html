@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book a Free Consultation | Overwatch Strategic Solutions</title>
+<meta name="description" content="Book a free 30-minute workplace safety consultation with Overwatch Strategic Solutions. Select a date and time that works for you.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<style>
+/* ── Booking page specific styles ── */
+.booking-wrap {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 40px var(--gutter) 100px;
+}
+
+/* Step indicator */
+.steps {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 48px;
+}
+.step-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--gray-400);
+  transition: color 0.3s;
+}
+.step-item.active { color: var(--navy-900); }
+.step-item.done { color: var(--orange-500); }
+.step-num {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  border: 2px solid var(--gray-300);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  flex-shrink: 0;
+  transition: all 0.3s;
+  background: transparent;
+}
+.step-item.active .step-num {
+  border-color: var(--navy-800);
+  background: var(--navy-800);
+  color: var(--cream-50);
+}
+.step-item.done .step-num {
+  border-color: var(--orange-500);
+  background: var(--orange-500);
+  color: var(--white);
+}
+.step-connector {
+  flex: 1;
+  height: 1px;
+  background: var(--gray-200);
+  margin: 0 12px;
+  max-width: 60px;
+}
+
+/* Calendar grid */
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 8px;
+}
+@media(max-width: 680px){ .cal-grid { grid-template-columns: 1fr; } }
+
+.day-card {
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--white);
+  transition: box-shadow 0.25s;
+}
+.day-card:hover { box-shadow: var(--shadow-md); }
+.day-card.selected { border-color: var(--navy-700); box-shadow: 0 0 0 2px var(--navy-700); }
+
+.day-header {
+  background: var(--cream-100);
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--gray-200);
+}
+.day-name {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gray-500);
+  margin-bottom: 3px;
+}
+.day-date {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--navy-900);
+  letter-spacing: -0.02em;
+}
+
+.slots-list {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.slot {
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  transition: all 0.2s;
+}
+.slot-available {
+  background: var(--cream-50);
+  border: 1px solid var(--gray-200);
+  color: var(--navy-900);
+  cursor: pointer;
+}
+.slot-available:hover {
+  background: var(--navy-800);
+  color: var(--cream-50);
+  border-color: var(--navy-800);
+}
+.slot-available:hover .slot-badge { background: rgba(250,247,242,0.15); color: var(--cream-50); }
+.slot-booked {
+  background: transparent;
+  border: 1px solid var(--gray-200);
+  color: var(--gray-400);
+  cursor: default;
+  opacity: 0.7;
+}
+.slot-selected {
+  background: var(--navy-800);
+  border-color: var(--navy-800);
+  color: var(--cream-50);
+}
+.slot-just-booked {
+  background: #DCFCE7;
+  border-color: #86EFAC;
+  color: #15803D;
+  cursor: default;
+}
+.slot-badge {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 2px 7px;
+  border-radius: 100px;
+  background: var(--gray-200);
+  color: var(--gray-500);
+  transition: all 0.2s;
+}
+.slot-available .slot-badge { background: var(--orange-100); color: var(--orange-600); }
+.slot-just-booked .slot-badge { background: #BBF7D0; color: #15803D; }
+
+/* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10,26,46,0.55);
+  backdrop-filter: blur(4px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s;
+}
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.modal {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  padding: 40px;
+  max-width: 520px;
+  width: 100%;
+  box-shadow: var(--shadow-xl);
+  transform: translateY(16px);
+  transition: transform 0.25s cubic-bezier(0.4,0,0.2,1);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.modal-overlay.open .modal { transform: translateY(0); }
+
+.modal-header { margin-bottom: 28px; }
+.modal-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--orange-600);
+  margin-bottom: 8px;
+  display: block;
+}
+.modal-title {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--navy-900);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+.modal-slot-info {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--cream-100);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--navy-800);
+  margin-top: 10px;
+}
+
+.modal .form-group { margin-bottom: 14px; }
+.modal .form-group label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--navy-800);
+  margin-bottom: 5px;
+}
+.modal .form-group input,
+.modal .form-group select,
+.modal .form-group textarea {
+  width: 100%;
+  padding: 11px 13px;
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  background: var(--cream-50);
+  color: var(--navy-900);
+  transition: all 0.2s;
+}
+.modal .form-group input:focus,
+.modal .form-group select:focus {
+  outline: none;
+  border-color: var(--orange-500);
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(232,131,58,0.12);
+}
+.form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media(max-width:480px){ .form-row-2 { grid-template-columns:1fr; } }
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+.modal-actions .btn { flex: 1; justify-content: center; padding: 13px 20px; }
+.btn-cancel {
+  background: transparent;
+  color: var(--gray-500);
+  border: 1px solid var(--gray-200);
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 600;
+  padding: 13px 20px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s;
+  flex: 1;
+}
+.btn-cancel:hover { background: var(--cream-100); color: var(--navy-800); }
+
+/* Success state */
+.success-panel {
+  display: none;
+  text-align: center;
+  padding: 60px 20px;
+}
+.success-icon {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: #DCFCE7;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 24px;
+  font-size: 2rem;
+  color: #15803D;
+}
+.success-panel h2 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+  color: var(--navy-900);
+}
+.success-panel p { font-size: 1.05rem; color: var(--gray-700); max-width: 42ch; margin: 0 auto 28px; line-height: 1.6; }
+.success-detail {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--cream-100);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  padding: 14px 20px;
+  font-size: 0.95rem;
+  color: var(--navy-800);
+  font-weight: 500;
+  margin-bottom: 32px;
+}
+
+/* Pagination */
+.cal-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.cal-nav-title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--navy-900);
+  letter-spacing: -0.02em;
+}
+.cal-nav-btn {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  padding: 8px 16px;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--navy-800);
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.cal-nav-btn:hover { background: var(--cream-100); }
+.cal-nav-btn:disabled { opacity: 0.3; cursor: default; }
+
+/* Info strip below calendar */
+.cal-legend {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+  font-size: 0.82rem;
+  color: var(--gray-500);
+}
+.legend-item { display: flex; align-items: center; gap: 7px; }
+.legend-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+}
+.legend-dot.available { background: var(--orange-500); }
+.legend-dot.booked { background: var(--gray-300); }
+.legend-dot.confirmed { background: #22C55E; }
+
+/* What to expect strip */
+.expect-strip {
+  margin-top: 48px;
+  padding: 28px 32px;
+  background: var(--navy-900);
+  border-radius: var(--radius-lg);
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+.expect-item {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  flex: 1;
+  min-width: 180px;
+}
+.expect-num {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--gold-500);
+  font-weight: 500;
+  padding-top: 3px;
+  flex-shrink: 0;
+}
+.expect-text { font-size: 0.9rem; color: rgba(250,247,242,0.8); line-height: 1.5; }
+.expect-text strong { color: var(--cream-50); font-weight: 600; display: block; margin-bottom: 3px; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo"><img src="assets/logo.jpg" alt="Overwatch Strategic Solutions"></a>
+    <ul class="nav-links">
+      <li><a href="services.html">Services</a></li>
+      <li><a href="packages.html">Packages</a></li>
+      <li><a href="why-oss.html">Why OSS</a></li>
+      <li><a href="blog/index.html">Resources</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="contact.html" class="btn btn-primary nav-cta">Other ways to reach us <span>→</span></a>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h16M3 11h16M3 16h16"/></svg></button>
+  </div>
+</nav>
+
+<!-- ===== BOOKING PAGE ===== -->
+<div class="booking-wrap">
+
+  <!-- Page header -->
+  <div style="max-width:640px; margin-bottom:44px;">
+    <div class="eyebrow" style="margin-bottom:18px;">Free Consultation</div>
+    <h1 style="font-size:clamp(2rem,4.5vw,3.2rem); margin-bottom:16px;">Book your 30-minute consultation.</h1>
+    <p style="font-size:1.1rem; color:var(--gray-700); line-height:1.6;">No sales pitch. No obligation. We look at your setup, flag what's missing, and give you a straight picture of where you stand. Pick a time below that works for you.</p>
+  </div>
+
+  <!-- Step indicator -->
+  <div class="steps">
+    <div class="step-item active" id="step1-indicator">
+      <div class="step-num">1</div>
+      <span>Pick a time</span>
+    </div>
+    <div class="step-connector"></div>
+    <div class="step-item" id="step2-indicator">
+      <div class="step-num">2</div>
+      <span>Your details</span>
+    </div>
+    <div class="step-connector"></div>
+    <div class="step-item" id="step3-indicator">
+      <div class="step-num">3</div>
+      <span>Confirmed</span>
+    </div>
+  </div>
+
+  <!-- Calendar section -->
+  <div id="calendarSection">
+    <div class="cal-nav">
+      <button class="cal-nav-btn" id="prevWeekBtn" onclick="changeWeek(-1)" disabled>← Previous</button>
+      <div class="cal-nav-title" id="weekLabel">Loading…</div>
+      <button class="cal-nav-btn" id="nextWeekBtn" onclick="changeWeek(1)">Next →</button>
+    </div>
+
+    <div class="cal-grid" id="calGrid">
+      <!-- Populated by JS -->
+    </div>
+
+    <div class="cal-legend">
+      <div class="legend-item"><div class="legend-dot available"></div> Available</div>
+      <div class="legend-item"><div class="legend-dot booked"></div> Booked</div>
+      <div class="legend-item"><div class="legend-dot confirmed"></div> Your booking</div>
+    </div>
+  </div>
+
+  <!-- Success panel (hidden until booking confirmed) -->
+  <div class="success-panel" id="successPanel">
+    <div class="success-icon">✓</div>
+    <h2>You're booked.</h2>
+    <p>A confirmation has been sent to your email. We'll see you soon — come with any questions about your setup, compliance worries, or just a general "where do I start?"</p>
+    <div class="success-detail" id="successDetail">📅 Your slot</div>
+    <br>
+    <a href="index.html" class="btn btn-primary">Back to home →</a>
+  </div>
+
+  <!-- What to expect strip -->
+  <div class="expect-strip" id="expectStrip">
+    <div class="expect-item">
+      <div class="expect-num">01</div>
+      <div class="expect-text"><strong>We ask about your business</strong>What you do, team size, current safety setup — about 10 minutes of questions.</div>
+    </div>
+    <div class="expect-item">
+      <div class="expect-num">02</div>
+      <div class="expect-text"><strong>We give you an honest picture</strong>What MOM requires for your sector and where the gaps usually are.</div>
+    </div>
+    <div class="expect-item">
+      <div class="expect-num">03</div>
+      <div class="expect-text"><strong>We recommend what fits</strong>A package, a one-off service, or nothing — whatever makes sense. No pressure to decide on the call.</div>
+    </div>
+  </div>
+
+</div><!-- /booking-wrap -->
+
+<!-- ===== CONFIRMATION MODAL ===== -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <span class="modal-eyebrow">Almost there</span>
+      <div class="modal-title">Confirm your booking</div>
+      <div class="modal-slot-info" id="modalSlotInfo">📅 …</div>
+    </div>
+
+    <div class="form-row-2">
+      <div class="form-group">
+        <label for="bkName">Your name *</label>
+        <input type="text" id="bkName" placeholder="Jane Tan" required>
+      </div>
+      <div class="form-group">
+        <label for="bkCompany">Company *</label>
+        <input type="text" id="bkCompany" placeholder="ABC Pte Ltd" required>
+      </div>
+    </div>
+
+    <div class="form-row-2">
+      <div class="form-group">
+        <label for="bkEmail">Email *</label>
+        <input type="email" id="bkEmail" placeholder="jane@company.com.sg" required>
+      </div>
+      <div class="form-group">
+        <label for="bkPhone">Phone / WhatsApp</label>
+        <input type="tel" id="bkPhone" placeholder="+65 9123 4567">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="bkTopic">What would you like to discuss?</label>
+      <select id="bkTopic">
+        <option value="" disabled selected>Select a topic…</option>
+        <option>Getting started with MOM compliance</option>
+        <option>Risk Assessments &amp; Safe Work Procedures</option>
+        <option>bizSAFE Level 3 application</option>
+        <option>Monthly safety support subscription</option>
+        <option>Had a near-miss / workplace incident</option>
+        <option>MOM inspection / enforcement notice</option>
+        <option>Fractional WSHO appointment</option>
+        <option>General safety review</option>
+        <option>Something else</option>
+      </select>
+    </div>
+
+    <p style="font-size:0.8rem; color:var(--gray-500); line-height:1.5; margin-top:6px;">We'll send a confirmation to your email. The consultation will be conducted via phone or WhatsApp — whichever you prefer.</p>
+
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">Go back</button>
+      <button class="btn btn-accent" onclick="confirmBooking()">Confirm booking →</button>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><img src="assets/logo.jpg" alt="Overwatch Strategic Solutions"></div>
+        <div class="footer-tagline">Everyone goes home safely.</div>
+        <p class="footer-about">Workplace safety and health support for Singapore SMEs.</p>
+        <div class="footer-uen">UEN: 201536119G</div>
+      </div>
+      <div>
+        <div class="footer-heading">Services</div>
+        <ul class="footer-links">
+          <li><a href="packages.html">OSS Watch</a></li>
+          <li><a href="packages.html">OSS Guard</a></li>
+          <li><a href="packages.html">OSS Overwatch</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Company</div>
+        <ul class="footer-links">
+          <li><a href="why-oss.html">Why OSS</a></li>
+          <li><a href="blog/index.html">Resources</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Contact</div>
+        <div class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1" y="2" width="12" height="10" rx="1"/><path d="M1 4l6 4 6-4"/></svg><a href="mailto:admin@overwatch.com.sg">admin@overwatch.com.sg</a></div>
+        <div class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 2l3 1 1 3-2 1a8 8 0 004 4l1-2 3 1 1 3a11 11 0 01-11-11z"/></svg><a href="tel:+6589534583">+65 8953 4583</a></div>
+        <div class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 13s5-4 5-8a5 5 0 10-10 0c0 4 5 8 5 8z"/><circle cx="7" cy="5" r="2"/></svg><span>200 Jalan Sultan #11-06, Textile Centre, Singapore 199018</span></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Overwatch Strategic Solutions. All rights reserved.</div>
+      <div class="footer-credentials">
+        <span class="footer-credential">MOM WSHO</span>
+        <span class="footer-credential">NEBOSH IGC</span>
+        <span class="footer-credential">UEN 201536119G</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+// ── Calendar Engine ──────────────────────────────────────────────────────────
+
+// Available days: Mon=1, Wed=3, Fri=5
+const AVAILABLE_DAYS = [1, 3, 5];
+
+// For each available day, which time slots are open (index into ALL_SLOTS)
+// All others will show as "Booked" to look busy.
+// Available slots placed at 9:30am, 1:00pm, 3:30pm with booked slots around them.
+const ALL_SLOTS = [
+  '8:00 AM','8:30 AM','9:00 AM','9:30 AM','10:00 AM','10:30 AM',
+  '11:00 AM','11:30 AM','12:00 PM','12:30 PM','1:00 PM','1:30 PM',
+  '2:00 PM','2:30 PM','3:00 PM','3:30 PM','4:00 PM','4:30 PM'
+];
+// Indices of the 3 open slots: 9:30am=3, 1:00pm=10, 3:30pm=15
+const OPEN_SLOT_INDICES = [3, 10, 15];
+
+// Tracking booked slots: key = "YYYY-MM-DD|HH:MM" → 'booked' | 'mine'
+const bookedSlots = {};
+
+// Current week offset (0 = this week)
+let weekOffset = 0;
+let selectedSlotInfo = null; // { date, time, label }
+
+// ── Helpers ──────────────────────────────────────────────────────────────────
+
+function getMonday(date) {
+  const d = new Date(date);
+  const day = d.getDay();
+  const diff = d.getDate() - day + (day === 0 ? -6 : 1);
+  d.setDate(diff);
+  d.setHours(0,0,0,0);
+  return d;
+}
+
+function addDays(date, n) {
+  const d = new Date(date);
+  d.setDate(d.getDate() + n);
+  return d;
+}
+
+function formatDate(date) {
+  return date.toISOString().split('T')[0];
+}
+
+function friendlyDay(date) {
+  return date.toLocaleDateString('en-SG', { weekday: 'short' }).toUpperCase();
+}
+
+function friendlyDate(date) {
+  return date.toLocaleDateString('en-SG', { day: 'numeric', month: 'short' });
+}
+
+function friendlyFull(date) {
+  return date.toLocaleDateString('en-SG', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+}
+
+function slotKey(dateStr, time) {
+  return dateStr + '|' + time;
+}
+
+function isInPast(date) {
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  return date < today;
+}
+
+// ── Render ───────────────────────────────────────────────────────────────────
+
+function renderCalendar() {
+  const grid = document.getElementById('calGrid');
+  const weekLabel = document.getElementById('weekLabel');
+  const prevBtn = document.getElementById('prevWeekBtn');
+
+  // Current week's Monday
+  const baseMonday = getMonday(new Date());
+  const monday = addDays(baseMonday, weekOffset * 7);
+
+  // Week label
+  const fri = addDays(monday, 4);
+  weekLabel.textContent = friendlyDate(monday) + ' – ' + friendlyDate(fri) + ', ' + monday.getFullYear();
+
+  // Disable prev if we're on current week
+  prevBtn.disabled = (weekOffset <= 0);
+
+  grid.innerHTML = '';
+
+  // Build 3 available day cards (Mon, Wed, Fri)
+  AVAILABLE_DAYS.forEach(dayOffset => {
+    const date = addDays(monday, dayOffset - 1); // Mon offset=1 → +0, Wed=3→+2, Fri=5→+4
+    const dateStr = formatDate(date);
+    const isPast = isInPast(date);
+
+    const card = document.createElement('div');
+    card.className = 'day-card';
+
+    // Day header
+    const header = document.createElement('div');
+    header.className = 'day-header';
+    if (isPast) header.style.opacity = '0.5';
+    header.innerHTML = `
+      <div class="day-name">${friendlyDay(date)}</div>
+      <div class="day-date">${friendlyDate(date)}</div>
+    `;
+
+    // Slots list
+    const slotsList = document.createElement('div');
+    slotsList.className = 'slots-list';
+
+    ALL_SLOTS.forEach((time, idx) => {
+      const key = slotKey(dateStr, time);
+      const isOpen = OPEN_SLOT_INDICES.includes(idx);
+      const isMine = bookedSlots[key] === 'mine';
+      const isBooked = bookedSlots[key] === 'booked' || !isOpen || isPast;
+
+      const slot = document.createElement('div');
+
+      if (isMine) {
+        slot.className = 'slot slot-just-booked';
+        slot.innerHTML = `<span>${time}</span><span class="slot-badge">Confirmed</span>`;
+      } else if (isBooked || isPast) {
+        slot.className = 'slot slot-booked';
+        slot.innerHTML = `<span>${time}</span><span class="slot-badge">Booked</span>`;
+      } else {
+        slot.className = 'slot slot-available';
+        slot.innerHTML = `<span>${time}</span><span class="slot-badge">Available</span>`;
+        slot.addEventListener('click', () => openModal(dateStr, time, date));
+      }
+
+      slotsList.appendChild(slot);
+    });
+
+    card.appendChild(header);
+    card.appendChild(slotsList);
+    grid.appendChild(card);
+  });
+}
+
+function changeWeek(dir) {
+  weekOffset = Math.max(0, weekOffset + dir);
+  renderCalendar();
+}
+
+// ── Modal ────────────────────────────────────────────────────────────────────
+
+function openModal(dateStr, time, dateObj) {
+  selectedSlotInfo = { dateStr, time, dateObj };
+  const label = '📅  ' + friendlyFull(dateObj) + ' · ' + time + ' (30 min)';
+  document.getElementById('modalSlotInfo').textContent = label;
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+
+  // Update step indicator
+  document.getElementById('step1-indicator').classList.remove('active');
+  document.getElementById('step1-indicator').classList.add('done');
+  document.getElementById('step2-indicator').classList.add('active');
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+  selectedSlotInfo = null;
+
+  // Reset step indicator
+  document.getElementById('step1-indicator').classList.add('active');
+  document.getElementById('step1-indicator').classList.remove('done');
+  document.getElementById('step2-indicator').classList.remove('active');
+}
+
+function confirmBooking() {
+  // Basic validation
+  const name = document.getElementById('bkName').value.trim();
+  const company = document.getElementById('bkCompany').value.trim();
+  const email = document.getElementById('bkEmail').value.trim();
+
+  if (!name || !company || !email) {
+    alert('Please fill in your name, company, and email before confirming.');
+    return;
+  }
+  if (!email.includes('@')) {
+    alert('Please enter a valid email address.');
+    return;
+  }
+
+  const { dateStr, time, dateObj } = selectedSlotInfo;
+  const key = slotKey(dateStr, time);
+
+  // Mark this slot as "mine"
+  bookedSlots[key] = 'mine';
+
+  // Block the slots immediately before and after (buffer)
+  const idx = ALL_SLOTS.indexOf(time);
+  if (idx > 0) bookedSlots[slotKey(dateStr, ALL_SLOTS[idx - 1])] = 'booked';
+  if (idx < ALL_SLOTS.length - 1) bookedSlots[slotKey(dateStr, ALL_SLOTS[idx + 1])] = 'booked';
+
+  // Close modal
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+
+  // Show success panel
+  document.getElementById('calendarSection').style.display = 'none';
+  document.getElementById('expectStrip').style.display = 'none';
+
+  const successPanel = document.getElementById('successPanel');
+  successPanel.style.display = 'block';
+  document.getElementById('successDetail').textContent =
+    '📅  ' + friendlyFull(dateObj) + ' · ' + time + ' (30 min)';
+
+  // Step 3 done
+  document.getElementById('step2-indicator').classList.remove('active');
+  document.getElementById('step2-indicator').classList.add('done');
+  document.getElementById('step3-indicator').classList.add('active');
+  document.getElementById('step3-indicator').classList.add('done');
+
+  // In a real deployment, POST to your backend/Formspree here.
+  console.log('Booking confirmed:', { name, company, email, dateStr, time });
+}
+
+// Close modal on overlay click
+document.getElementById('modalOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+// ── Init ─────────────────────────────────────────────────────────────────────
+renderCalendar();
+</script>
+</body>
+</html>
