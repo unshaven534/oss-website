@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Referral Programme | Overwatch Strategic Solutions</title>
+<meta name="description" content="Refer a business to Overwatch Strategic Solutions and earn a referral reward based on their contract value. Simple, transparent, and rewarding.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<style>
+/* ── Referral-page-specific styles ── */
+
+.referral-hero {
+  background: var(--navy-900);
+  color: var(--cream-50);
+  padding: 100px 0 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.referral-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 60% at 70% 40%, rgba(244,196,48,0.08) 0%, transparent 70%),
+              radial-gradient(ellipse 40% 50% at 20% 70%, rgba(232,131,58,0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+.referral-hero .eyebrow {
+  color: var(--gold-500);
+  margin-bottom: 20px;
+}
+.referral-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 500;
+  color: var(--cream-50);
+  line-height: 1.15;
+  max-width: 700px;
+  margin: 0 auto 24px;
+}
+.referral-hero h1 em {
+  font-style: italic;
+  color: var(--gold-400);
+}
+.referral-hero .lede {
+  color: rgba(250,247,242,0.7);
+  font-size: 1.1rem;
+  max-width: 540px;
+  margin: 0 auto 40px;
+  line-height: 1.65;
+}
+
+/* ── How it works ── */
+.how-it-works {
+  padding: 96px 0;
+  background: var(--cream-50, #faf7f2);
+}
+.section-heading {
+  text-align: center;
+  margin-bottom: 64px;
+}
+.section-heading h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 500;
+  color: var(--navy-900);
+  margin-bottom: 12px;
+}
+.section-heading p {
+  color: var(--gray-600, #6b7280);
+  font-size: 1rem;
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 32px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.step-card {
+  background: #fff;
+  border: 1px solid var(--gray-200, #e5e7eb);
+  border-radius: 16px;
+  padding: 36px 28px;
+  position: relative;
+}
+.step-number {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--orange-500);
+  margin-bottom: 16px;
+}
+.step-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--navy-900);
+  margin-bottom: 10px;
+}
+.step-card p {
+  font-size: 0.92rem;
+  color: var(--gray-600, #6b7280);
+  line-height: 1.6;
+}
+.step-connector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-300, #d1d5db);
+  font-size: 1.4rem;
+  padding-top: 36px;
+}
+
+/* ── Reward calculator ── */
+.reward-section {
+  padding: 96px 0;
+  background: var(--navy-900);
+  color: var(--cream-50);
+}
+.reward-section .section-heading h2 { color: var(--cream-50); }
+.reward-section .section-heading p  { color: rgba(250,247,242,0.65); }
+
+.reward-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  max-width: 900px;
+  margin: 0 auto;
+  align-items: start;
+}
+@media (max-width: 700px) { .reward-grid { grid-template-columns: 1fr; } }
+
+.reward-tiers {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.tier-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px;
+  padding: 22px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: border-color 0.2s;
+}
+.tier-card:hover { border-color: var(--gold-500); }
+.tier-card.featured {
+  background: rgba(244,196,48,0.08);
+  border-color: var(--gold-500);
+}
+.tier-label {
+  font-size: 0.88rem;
+  color: rgba(250,247,242,0.6);
+  margin-bottom: 4px;
+  font-family: var(--font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.tier-name {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--cream-50);
+}
+.tier-reward {
+  text-align: right;
+}
+.tier-pct {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--gold-400);
+}
+.tier-basis {
+  font-size: 0.78rem;
+  color: rgba(250,247,242,0.5);
+  margin-top: 2px;
+}
+
+/* Calculator */
+.calc-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 32px 28px;
+}
+.calc-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--cream-50);
+  margin-bottom: 24px;
+}
+.calc-field {
+  margin-bottom: 20px;
+}
+.calc-field label {
+  display: block;
+  font-size: 0.82rem;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(250,247,242,0.55);
+  margin-bottom: 8px;
+}
+.calc-field select,
+.calc-field input {
+  width: 100%;
+  padding: 11px 14px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 8px;
+  color: var(--cream-50);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.calc-field select option { background: #0f1f35; }
+.calc-field select:focus,
+.calc-field input:focus { border-color: var(--gold-500); }
+.calc-result {
+  background: rgba(244,196,48,0.1);
+  border: 1px solid rgba(244,196,48,0.3);
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 8px;
+  text-align: center;
+}
+.calc-result-label {
+  font-size: 0.78rem;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(250,247,242,0.5);
+  margin-bottom: 6px;
+}
+.calc-result-amount {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: var(--gold-400);
+}
+.calc-result-note {
+  font-size: 0.78rem;
+  color: rgba(250,247,242,0.4);
+  margin-top: 4px;
+}
+
+/* ── Terms ── */
+.terms-section {
+  padding: 80px 0;
+  background: var(--cream-100, #f4efe6);
+}
+.terms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.term-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.term-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--orange-500);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #fff;
+}
+.term-item h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--navy-900);
+  margin-bottom: 4px;
+}
+.term-item p {
+  font-size: 0.88rem;
+  color: var(--gray-600, #6b7280);
+  line-height: 1.55;
+}
+
+/* ── Referral form ── */
+.referral-form-section {
+  padding: 96px 0;
+  background: #fff;
+}
+.referral-form-wrap {
+  max-width: 640px;
+  margin: 0 auto;
+}
+.form-card {
+  background: var(--cream-50, #faf7f2);
+  border: 1px solid var(--gray-200, #e5e7eb);
+  border-radius: 20px;
+  padding: 48px 44px;
+}
+@media (max-width: 600px) { .form-card { padding: 32px 24px; } }
+
+.form-card h2 {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  font-weight: 500;
+  color: var(--navy-900);
+  margin-bottom: 8px;
+}
+.form-card > p {
+  color: var(--gray-500, #9ca3af);
+  font-size: 0.95rem;
+  margin-bottom: 36px;
+  line-height: 1.55;
+}
+.form-section-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--orange-500);
+  margin-bottom: 16px;
+  margin-top: 28px;
+  display: block;
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 500px) { .form-row { grid-template-columns: 1fr; } }
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.form-group label {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--navy-700, #1e3a5f);
+  letter-spacing: 0.01em;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 11px 14px;
+  border: 1px solid var(--gray-300, #d1d5db);
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--navy-900);
+  background: #fff;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--navy-700, #1e3a5f);
+  box-shadow: 0 0 0 3px rgba(15,31,53,0.08);
+}
+.form-group textarea { resize: vertical; min-height: 90px; }
+.form-divider {
+  border: none;
+  border-top: 1px solid var(--gray-200, #e5e7eb);
+  margin: 28px 0;
+}
+.form-note-box {
+  background: rgba(232,131,58,0.08);
+  border: 1px solid rgba(232,131,58,0.2);
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-size: 0.85rem;
+  color: var(--navy-800, #0f2744);
+  line-height: 1.55;
+  margin-bottom: 24px;
+}
+.form-note-box strong { color: var(--orange-600, #c2410c); }
+.form-submit-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.btn-large {
+  padding: 14px 32px;
+  font-size: 1rem;
+}
+.form-privacy {
+  font-size: 0.78rem;
+  color: var(--gray-400, #9ca3af);
+  line-height: 1.5;
+}
+
+/* success/error */
+#refSuccess {
+  background: #DCFCE7;
+  border: 1px solid #86EFAC;
+  border-radius: 10px;
+  padding: 18px 20px;
+  color: #15803D;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-top: 16px;
+  display: none;
+}
+#refError {
+  background: #FCEAEA;
+  border: 1px solid #F7C1C1;
+  border-radius: 10px;
+  padding: 16px 20px;
+  color: #B02020;
+  font-size: 0.95rem;
+  margin-top: 16px;
+  display: none;
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo"><img src="assets/logo.jpg" alt="Overwatch Strategic Solutions"></a>
+        <ul class="nav-links">
+      <li><a href="https://www.overwatch.com.sg">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="packages.html">Packages</a></li>
+      <li><a href="why-oss.html">Why OSS</a></li>
+      <li><a href="blog/index.html">Resources</a></li>
+      <li><a href="audit.html">Free Audit</a></li>
+      <li><a href="cost-calculator.html">Cost Calculator</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li class="nav-dropdown">
+        <button class="nav-dropdown-btn">Trades <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 4l4 4 4-4"/></svg></button>
+        <ul class="nav-dropdown-menu">
+          <li><a href="industry-fnb.html">F&amp;B</a></li>
+          <li><a href="industry-workshop.html">Workshops</a></li>
+          <li><a href="industry-warehouse.html">Warehouses</a></li>
+        </ul>
+      </li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="referral.html">Referral</a></li>
+    </ul>
+      </li>
+      <li><a href="blog/index.html">Resources</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="contact.html" class="btn btn-primary nav-cta">Get in touch <span aria-hidden="true">&rarr;</span></a>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h16M3 11h16M3 16h16"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="referral-hero">
+  <div class="container">
+    <div class="eyebrow">Referral Programme</div>
+    <h1>Know a business that needs<br><em>proper safety support?</em></h1>
+    <p class="lede">Refer them to OSS and earn a reward based on their contract value &mdash; paid out once they&rsquo;ve been with us for 6 months.</p>
+    <a href="#refer-now" class="btn btn-accent btn-large">Make a referral &rarr;</a>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works">
+  <div class="container">
+    <div class="section-heading">
+      <h2>How it works</h2>
+      <p>Three steps. No paperwork on your end. We handle everything after the introduction.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-number">Step 01</div>
+        <h3>Make the introduction</h3>
+        <p>Fill in the form below with your details and the business you&rsquo;re referring. We&rsquo;ll reach out within 2 business hours.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">Step 02</div>
+        <h3>We close the deal</h3>
+        <p>We handle the consultation, proposal, and onboarding. You don&rsquo;t need to sell anything &mdash; just make the introduction.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">Step 03</div>
+        <h3>You get paid</h3>
+        <p>Once the referred client completes 3 consecutive months on their subscription, your one-time reward is calculated and transferred within 14 working days.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REWARD / CALCULATOR -->
+<section class="reward-section">
+  <div class="container">
+    <div class="section-heading">
+      <h2>Your referral reward</h2>
+      <p>10% of the client&rsquo;s 3-month contract value, paid as a one-time reward after they complete 3 months.</p>
+    </div>
+    <div class="reward-grid">
+
+      <!-- Tier table -->
+      <div class="reward-tiers">
+        <div class="tier-card">
+          <div>
+            <div class="tier-label">OSS Watch</div>
+            <div class="tier-name">Fewer than 20 staff</div>
+          </div>
+          <div class="tier-reward">
+            <div class="tier-pct">10%</div>
+            <div class="tier-basis">10% of 3-month contract value</div>
+          </div>
+        </div>
+        <div class="tier-card featured">
+          <div>
+            <div class="tier-label">OSS Guard</div>
+            <div class="tier-name">15&ndash;80 staff</div>
+          </div>
+          <div class="tier-reward">
+            <div class="tier-pct">10%</div>
+            <div class="tier-basis">10% of 3-month contract value</div>
+          </div>
+        </div>
+        <div class="tier-card">
+          <div>
+            <div class="tier-label">OSS Overwatch</div>
+            <div class="tier-name">50&ndash;300 staff, named WSHO</div>
+          </div>
+          <div class="tier-reward">
+            <div class="tier-pct">10%</div>
+            <div class="tier-basis">10% of 3-month contract value</div>
+          </div>
+        </div>
+        <p style="font-size:0.8rem; color:rgba(250,247,242,0.4); margin-top:8px; line-height:1.5;">
+          Paid once after the client completes 3 months. Custom pricing may vary.
+        </p>
+      </div>
+
+      <!-- Calculator -->
+      <div class="calc-card">
+        <h3>Estimate your reward</h3>
+        <div class="calc-field">
+          <label>Package tier</label>
+          <select id="calcPackage">
+            <option value="650,0.10">OSS Watch &mdash; from S$650/month</option>
+            <option value="1200,0.10" selected>OSS Guard &mdash; from S$1,200/month</option>
+            <option value="2500,0.10">OSS Overwatch &mdash; from S$2,500/month</option>
+          </select>
+        </div>
+
+        <div class="calc-result">
+          <div class="calc-result-label">Your one-time reward</div>
+          <div class="calc-result-amount" id="calcAmount">S$360</div>
+          <div class="calc-result-note">Paid once after the client completes 3 months</div>
+        </div>
+        <p style="font-size:0.75rem; color:rgba(250,247,242,0.35); margin-top:14px; line-height:1.5;">
+          This is an estimate only. Actual reward confirmed by OSS after the 6-month qualifying period.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- KEY TERMS -->
+<section class="terms-section">
+  <div class="container">
+    <div class="section-heading">
+      <h2 style="color:var(--navy-900);">Key terms</h2>
+      <p>Simple rules, no hidden catches.</p>
+    </div>
+    <div class="terms-grid">
+      <div class="term-item">
+        <div class="term-icon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 2v14M2 9h14"/></svg>
+        </div>
+        <div>
+          <h4>3-month qualifying period</h4>
+          <p>The referred client must complete 3 consecutive months on a paid OSS subscription before the reward is released.</p>
+        </div>
+      </div>
+      <div class="term-item">
+        <div class="term-icon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="4" width="14" height="11" rx="1"/><path d="M6 4V3a1 1 0 011-1h4a1 1 0 011 1v1"/><path d="M9 9v3"/></svg>
+        </div>
+        <div>
+          <h4>One-time payout</h4>
+          <p>Your reward is paid in one transfer within 14 working days of the 3-month mark. No ongoing admin, no monthly tracking.</p>
+        </div>
+      </div>
+      <div class="term-item">
+        <div class="term-icon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="9" r="7"/><path d="M9 5v4l3 3"/></svg>
+        </div>
+        <div>
+          <h4>Early exit — no reward</h4>
+          <p>If the client cancels before completing 3 months, no reward is paid. The full 3-month period must be fulfilled.</p>
+        </div>
+      </div>
+      <div class="term-item">
+        <div class="term-icon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 4L7 11l-3-3"/></svg>
+        </div>
+        <div>
+          <h4>No limit on referrals</h4>
+          <p>You can refer as many businesses as you like. Each qualifying referral earns its own separate reward.</p>
+        </div>
+      </div>
+      <div class="term-item">
+        <div class="term-icon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 2a7 7 0 100 14A7 7 0 009 2z"/><path d="M9 6v4h3"/></svg>
+        </div>
+        <div>
+          <h4>New clients only</h4>
+          <p>The referral programme applies to businesses that are not already OSS clients at the time of the referral.</p>
+        </div>
+      </div>
+      <div class="term-item">
+        <div class="term-icon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 9h12M9 3v12"/></svg>
+        </div>
+        <div>
+          <h4>Any industry welcome</h4>
+          <p>We work with F&amp;B, workshops, warehouses, retail, and offices. If they need WSH support, we can help.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REFERRAL FORM -->
+<section class="referral-form-section" id="refer-now">
+  <div class="container">
+    <div class="referral-form-wrap">
+      <div class="form-card">
+        <h2>Make a referral</h2>
+        <p>Fill this in and we&rsquo;ll take it from there. The business you refer won&rsquo;t feel any sales pressure &mdash; we start with a free consultation.</p>
+
+        <form id="referralForm" action="https://formspree.io/f/xqewdlaj" method="POST">
+          <input type="hidden" name="_subject" value="New Referral Submission via OSS Website">
+
+          <span class="form-section-label">Your details</span>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="ref_name">Your name *</label>
+              <input type="text" id="ref_name" name="referrer_name" placeholder="Jane Tan" required>
+            </div>
+            <div class="form-group">
+              <label for="ref_email">Your email *</label>
+              <input type="email" id="ref_email" name="referrer_email" placeholder="jane@example.com" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="ref_phone">Your phone / WhatsApp</label>
+              <input type="tel" id="ref_phone" name="referrer_phone" placeholder="+65 9123 4567">
+            </div>
+            <div class="form-group">
+              <label for="ref_company">Your company (if any)</label>
+              <input type="text" id="ref_company" name="referrer_company" placeholder="Your Pte Ltd">
+            </div>
+          </div>
+
+          <hr class="form-divider">
+          <span class="form-section-label">Business you&rsquo;re referring</span>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="biz_name">Business name *</label>
+              <input type="text" id="biz_name" name="business_name" placeholder="ABC Pte Ltd" required>
+            </div>
+            <div class="form-group">
+              <label for="biz_contact">Contact person *</label>
+              <input type="text" id="biz_contact" name="business_contact" placeholder="Their name" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="biz_phone">Their phone / WhatsApp *</label>
+              <input type="tel" id="biz_phone" name="business_phone" placeholder="+65 8765 4321" required>
+            </div>
+            <div class="form-group">
+              <label for="biz_email">Their email</label>
+              <input type="email" id="biz_email" name="business_email" placeholder="them@company.com">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="biz_sector">Their industry *</label>
+              <select id="biz_sector" name="business_sector" required>
+                <option value="" disabled selected>Select sector&hellip;</option>
+                <option>F&amp;B &mdash; Restaurant / Caf&eacute;</option>
+                <option>F&amp;B &mdash; Central Kitchen / Catering</option>
+                <option>Workshop &mdash; Auto / Fabrication / Carpentry</option>
+                <option>Warehouse / Logistics</option>
+                <option>Retail</option>
+                <option>Office / Professional Services</option>
+                <option>Light Industrial / Manufacturing</option>
+                <option>Construction-Adjacent / Trades</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="biz_staff">Approximate staff count</label>
+              <select id="biz_staff" name="business_staff">
+                <option value="" disabled selected>Select range&hellip;</option>
+                <option>1&ndash;5</option>
+                <option>6&ndash;15</option>
+                <option>16&ndash;30</option>
+                <option>31&ndash;50</option>
+                <option>51&ndash;100</option>
+                <option>100+</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="biz_notes">Anything we should know before reaching out?</label>
+            <textarea id="biz_notes" name="notes" placeholder="e.g. They recently had a MOM notice. They&rsquo;re applying for bizSAFE. Or just &mdash; they need help getting things sorted."></textarea>
+          </div>
+
+          <div class="form-note-box">
+            <strong>How you get paid:</strong> Your reward is <strong>10% of the client&rsquo;s 3-month contract value</strong>, paid as a one-time transfer within 14 days of them completing 3 months on a paid OSS subscription.
+          </div>
+
+          <div class="form-submit-row">
+            <button type="submit" id="refSubmitBtn" class="btn btn-accent btn-large">Submit referral &rarr;</button>
+            <span class="form-privacy">We don&rsquo;t share details. No spam to you or the business.</span>
+          </div>
+
+          <div id="refSuccess">
+            &#10003; <strong>Referral submitted!</strong> We&rsquo;ll reach out to the business within 2 business hours and keep you updated on progress.
+          </div>
+          <div id="refError">
+            Something went wrong. Please try again or email <a href="mailto:admin@overwatch.com.sg">admin@overwatch.com.sg</a>.
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><img src="assets/logo.jpg" alt="Overwatch Strategic Solutions"></div>
+        <div class="footer-tagline">Everyone goes home safely.</div>
+        <p class="footer-about">Workplace safety and health support for Singapore SMEs &mdash; built as a subscription, delivered by a MOM-registered, NEBOSH-certified safety professional.</p>
+        <div class="footer-uen">UEN: 201536119G</div>
+      </div>
+      <div>
+        <div class="footer-heading">Services</div>
+        <ul class="footer-links">
+          <li><a href="packages.html">OSS Watch</a></li>
+          <li><a href="packages.html">OSS Guard</a></li>
+          <li><a href="packages.html">OSS Overwatch</a></li>
+          <li><a href="services.html">All services</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Company</div>
+        <ul class="footer-links">
+          <li><a href="why-oss.html">Why OSS</a></li>
+      <li class="nav-dropdown">
+        <a class="nav-dropdown-toggle">Trades <span class="nav-arrow">&#9660;</span></a>
+        <ul class="nav-dropdown-menu">
+          <li><a href="industry-fnb.html">F&amp;B</a></li>
+          <li><a href="industry-workshop.html">Workshops</a></li>
+          <li><a href="industry-warehouse.html">Warehouses</a></li>
+        </ul>
+      </li>
+          <li><a href="blog/index.html">Resources</a></li>
+          <li><a href="referral.html" class="active">Referral</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+      <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Contact</div>
+        <div class="footer-contact-item">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1" y="2" width="12" height="10" rx="1"/><path d="M1 4l6 4 6-4"/></svg>
+          <a href="mailto:admin@overwatch.com.sg">admin@overwatch.com.sg</a>
+        </div>
+        <div class="footer-contact-item">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 2l3 1 1 3-2 1a8 8 0 004 4l1-2 3 1 1 3a11 11 0 01-11-11z"/></svg>
+          <a href="tel:+6589534583">+65 8953 4583</a>
+        </div>
+        <div class="footer-contact-item">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 13s5-4 5-8a5 5 0 10-10 0c0 4 5 8 5 8z"/><circle cx="7" cy="5" r="2"/></svg>
+          <span>200 Jalan Sultan #11-06<br>Textile Centre, Singapore 199018</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>&copy; 2026 Overwatch Strategic Solutions. All rights reserved.</div>
+      <div class="footer-credentials">
+        <span class="footer-credential">MOM WSHO</span>
+        <span class="footer-credential">NEBOSH IGC</span>
+        <span class="footer-credential">UEN 201536119G</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+// ── Reward Calculator ──
+const calcPackage = document.getElementById('calcPackage');
+const calcAmount  = document.getElementById('calcAmount');
+
+function updateCalc() {
+  const [basePrice, rate] = calcPackage.value.split(',');
+  const reward = parseFloat(basePrice) * 3 * parseFloat(rate);
+  calcAmount.textContent = 'S$' + reward.toLocaleString('en-SG', {minimumFractionDigits:0, maximumFractionDigits:0});
+}
+
+calcPackage.addEventListener('change', updateCalc);
+updateCalc();
+
+// ── Referral Form ──
+document.getElementById('referralForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn     = document.getElementById('refSubmitBtn');
+  const success = document.getElementById('refSuccess');
+  const error   = document.getElementById('refError');
+
+  btn.disabled    = true;
+  btn.textContent = 'Submitting\u2026';
+  success.style.display = 'none';
+  error.style.display   = 'none';
+
+  try {
+    const resp = await fetch('https://formspree.io/f/xqewdlaj', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: new FormData(this)
+    });
+    if (resp.ok) {
+      success.style.display = 'block';
+      this.reset();
+      btn.textContent = 'Submitted \u2713';
+      updateCalc();
+    } else {
+      throw new Error('Server error');
+    }
+  } catch {
+    error.style.display = 'block';
+    btn.disabled    = false;
+    btn.textContent = 'Submit referral \u2192';
+  }
+});
+</script>
+</body>
+</html>

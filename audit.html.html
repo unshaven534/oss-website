@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free WSH Self-Audit | Is Your Workplace MOM-Compliant? | OSS</title>
+<meta name="description" content="Take our free 10-question workplace safety audit and find out if your Singapore business is MOM-compliant. Instant results, no sign-up required.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<style>
+/* ── Audit page styles ── */
+.audit-hero {
+  background: var(--navy-900);
+  color: var(--cream-50);
+  padding: 80px 0 60px;
+  text-align: center;
+}
+.audit-hero .eyebrow { color: var(--gold-500); margin-bottom: 16px; }
+.audit-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 500;
+  color: var(--cream-50);
+  max-width: 640px;
+  margin: 0 auto 16px;
+  line-height: 1.2;
+}
+.audit-hero h1 em { font-style: italic; color: var(--gold-400); }
+.audit-hero p {
+  color: rgba(250,247,242,0.7);
+  font-size: 1rem;
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ── Audit wrapper ── */
+.audit-section { padding: 64px 0 100px; background: var(--cream-50, #faf7f2); }
+.audit-wrap { max-width: 680px; margin: 0 auto; }
+
+/* Progress bar */
+.audit-progress-wrap {
+  margin-bottom: 36px;
+}
+.audit-progress-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gray-500, #9ca3af);
+  margin-bottom: 8px;
+}
+.audit-progress-bar {
+  height: 5px;
+  background: var(--gray-200, #e5e7eb);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.audit-progress-fill {
+  height: 100%;
+  background: var(--orange-500);
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+
+/* Question card */
+.audit-card {
+  background: #fff;
+  border: 1px solid var(--gray-200, #e5e7eb);
+  border-radius: 20px;
+  padding: 44px 40px;
+  box-shadow: 0 2px 20px rgba(15,31,53,0.05);
+}
+@media (max-width: 560px) { .audit-card { padding: 32px 24px; } }
+
+.audit-q-num {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--orange-500);
+  margin-bottom: 12px;
+}
+.audit-q-text {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.5vw, 1.55rem);
+  font-weight: 500;
+  color: var(--navy-900);
+  line-height: 1.35;
+  margin-bottom: 8px;
+}
+.audit-q-sub {
+  font-size: 0.88rem;
+  color: var(--gray-500, #9ca3af);
+  margin-bottom: 32px;
+  line-height: 1.55;
+}
+
+/* Answer buttons */
+.audit-answers {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.audit-answer-btn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  border: 1.5px solid var(--gray-200, #e5e7eb);
+  border-radius: 12px;
+  background: var(--cream-50, #faf7f2);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.97rem;
+  color: var(--navy-900);
+  text-align: left;
+  transition: border-color 0.15s, background 0.15s, transform 0.1s;
+}
+.audit-answer-btn:hover {
+  border-color: var(--navy-700, #1e3a5f);
+  background: #fff;
+  transform: translateX(3px);
+}
+.audit-answer-btn.selected-yes {
+  border-color: #16a34a;
+  background: #f0fdf4;
+  color: #14532d;
+}
+.audit-answer-btn.selected-no {
+  border-color: #dc2626;
+  background: #fef2f2;
+  color: #7f1d1d;
+}
+.audit-answer-btn.selected-unsure {
+  border-color: var(--gold-500);
+  background: #fefce8;
+  color: #713f12;
+}
+.audit-btn-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  background: var(--gray-100, #f3f4f6);
+}
+
+/* Result screen */
+.audit-result { display: none; }
+.result-score-ring {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 28px;
+  font-family: var(--font-display);
+}
+.result-score-num {
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.result-score-label {
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.7;
+}
+.result-status {
+  text-align: center;
+  margin-bottom: 28px;
+}
+.result-status h2 {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+.result-status p {
+  font-size: 0.95rem;
+  color: var(--gray-600, #6b7280);
+  max-width: 440px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+.result-breakdown {
+  margin: 28px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.result-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+}
+.result-item.ok   { background: #f0fdf4; color: #14532d; }
+.result-item.warn { background: #fef9c3; color: #713f12; }
+.result-item.risk { background: #fef2f2; color: #7f1d1d; }
+.result-item-icon { font-size: 1rem; flex-shrink: 0; }
+.result-cta {
+  background: var(--navy-900);
+  color: var(--cream-50);
+  border-radius: 16px;
+  padding: 32px;
+  text-align: center;
+  margin-top: 28px;
+}
+.result-cta h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--cream-50);
+  margin-bottom: 10px;
+}
+.result-cta p {
+  color: rgba(250,247,242,0.7);
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  line-height: 1.55;
+}
+.result-cta-btns {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn-retake {
+  background: transparent;
+  border: 1.5px solid rgba(250,247,242,0.3);
+  color: var(--cream-50);
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+.btn-retake:hover { border-color: rgba(250,247,242,0.6); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo"><img src="assets/logo.jpg" alt="Overwatch Strategic Solutions"></a>
+        <ul class="nav-links">
+      <li><a href="https://www.overwatch.com.sg">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="packages.html">Packages</a></li>
+      <li><a href="why-oss.html">Why OSS</a></li>
+      <li><a href="blog/index.html">Resources</a></li>
+      <li><a href="audit.html">Free Audit</a></li>
+      <li><a href="cost-calculator.html">Cost Calculator</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li class="nav-dropdown">
+        <button class="nav-dropdown-btn">Trades <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 4l4 4 4-4"/></svg></button>
+        <ul class="nav-dropdown-menu">
+          <li><a href="industry-fnb.html">F&amp;B</a></li>
+          <li><a href="industry-workshop.html">Workshops</a></li>
+          <li><a href="industry-warehouse.html">Warehouses</a></li>
+        </ul>
+      </li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="referral.html">Referral</a></li>
+    </ul>
+      </li>
+      <li><a href="blog/index.html">Resources</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="referral.html">Referral</a></li>
+    </ul>
+    <a href="contact.html" class="btn btn-primary nav-cta">Get in touch <span aria-hidden="true">&rarr;</span></a>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h16M3 11h16M3 16h16"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="audit-hero">
+  <div class="container">
+    <div class="eyebrow">Free WSH Self-Audit</div>
+    <h1>Is your workplace <em>MOM-compliant?</em></h1>
+    <p>10 questions. 2 minutes. Instant results. No sign-up required.</p>
+  </div>
+</section>
+
+<!-- AUDIT -->
+<section class="audit-section">
+  <div class="container">
+    <div class="audit-wrap">
+
+      <!-- Progress -->
+      <div class="audit-progress-wrap" id="progressWrap">
+        <div class="audit-progress-meta">
+          <span id="progressLabel">Question 1 of 10</span>
+          <span id="progressPct">0% complete</span>
+        </div>
+        <div class="audit-progress-bar">
+          <div class="audit-progress-fill" id="progressFill" style="width:0%"></div>
+        </div>
+      </div>
+
+      <!-- Question card -->
+      <div class="audit-card" id="questionCard">
+        <div class="audit-q-num" id="qNum">Question 1</div>
+        <div class="audit-q-text" id="qText"></div>
+        <div class="audit-q-sub" id="qSub"></div>
+        <div class="audit-answers" id="qAnswers"></div>
+      </div>
+
+      <!-- Result card -->
+      <div class="audit-card audit-result" id="resultCard">
+        <div class="result-score-ring" id="scoreRing">
+          <div class="result-score-num" id="scoreNum"></div>
+          <div class="result-score-label">Score</div>
+        </div>
+        <div class="result-status" id="resultStatus"></div>
+        <div class="result-breakdown" id="resultBreakdown"></div>
+        <div class="result-cta" id="resultCta"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo"><img src="assets/logo.jpg" alt="Overwatch Strategic Solutions"></div>
+        <div class="footer-tagline">Everyone goes home safely.</div>
+        <p class="footer-about">Workplace safety and health support for Singapore SMEs &mdash; built as a subscription, delivered by a MOM-registered, NEBOSH-certified safety professional.</p>
+        <div class="footer-uen">UEN: 201536119G</div>
+      </div>
+      <div>
+        <div class="footer-heading">Services</div>
+        <ul class="footer-links">
+          <li><a href="packages.html">OSS Watch</a></li>
+          <li><a href="packages.html">OSS Guard</a></li>
+          <li><a href="packages.html">OSS Overwatch</a></li>
+          <li><a href="services.html">All services</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Company</div>
+        <ul class="footer-links">
+          <li><a href="why-oss.html">Why OSS</a></li>
+      <li class="nav-dropdown">
+        <a class="nav-dropdown-toggle">Trades <span class="nav-arrow">&#9660;</span></a>
+        <ul class="nav-dropdown-menu">
+          <li><a href="industry-fnb.html">F&amp;B</a></li>
+          <li><a href="industry-workshop.html">Workshops</a></li>
+          <li><a href="industry-warehouse.html">Warehouses</a></li>
+        </ul>
+      </li>
+          <li><a href="blog/index.html">Resources</a></li>
+          <li><a href="audit.html" class="active">Free Audit</a></li>
+          <li><a href="referral.html">Referral</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+      <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Contact</div>
+        <div class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1" y="2" width="12" height="10" rx="1"/><path d="M1 4l6 4 6-4"/></svg><a href="mailto:admin@overwatch.com.sg">admin@overwatch.com.sg</a></div>
+        <div class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 2l3 1 1 3-2 1a8 8 0 004 4l1-2 3 1 1 3a11 11 0 01-11-11z"/></svg><a href="tel:+6589534583">+65 8953 4583</a></div>
+        <div class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 13s5-4 5-8a5 5 0 10-10 0c0 4 5 8 5 8z"/><circle cx="7" cy="5" r="2"/></svg><span>200 Jalan Sultan #11-06<br>Textile Centre, Singapore 199018</span></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>&copy; 2026 Overwatch Strategic Solutions. All rights reserved.</div>
+      <div class="footer-credentials">
+        <span class="footer-credential">MOM WSHO</span>
+        <span class="footer-credential">NEBOSH IGC</span>
+        <span class="footer-credential">UEN 201536119G</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+const questions = [
+  {
+    text: "Do you have a written Workplace Safety & Health (WSH) Policy?",
+    sub: "A signed document stating your commitment to safety, who is responsible, and how safety is managed. Must reflect current operations.",
+    area: "WSH Policy",
+    weight: 1
+  },
+  {
+    text: "Have you conducted Risk Assessments (RA) for all major tasks in your workplace?",
+    sub: "RAs must identify hazards, rate likelihood and severity, document controls, and be signed off by a competent person.",
+    area: "Risk Assessments",
+    weight: 2
+  },
+  {
+    text: "Have your Risk Assessments been reviewed in the last 3 years — or after any significant change to work processes?",
+    sub: "Outdated RAs that no longer reflect your current operations are a common MOM finding.",
+    area: "RA Currency",
+    weight: 2
+  },
+  {
+    text: "Do you have Safe Work Procedures (SWP) for high-risk tasks, posted at the point of use?",
+    sub: "SWPs should be visible at the workstation, not filed away. Workers must be able to reference them during the task.",
+    area: "Safe Work Procedures",
+    weight: 1
+  },
+  {
+    text: "Have all workers been briefed on the hazards and controls relevant to their tasks?",
+    sub: "Documented briefings — not just verbal. Workers should be able to tell an inspector what the hazards are and what they do about them.",
+    area: "Worker Briefing",
+    weight: 2
+  },
+  {
+    text: "Do you have a documented process for reporting and recording workplace incidents and near misses?",
+    sub: "Includes minor injuries and near misses, not just reportable incidents. A register of incidents is required under the WSH Act.",
+    area: "Incident Reporting",
+    weight: 1
+  },
+  {
+    text: "Are you aware of which incidents must be reported to MOM, and within what timeframe?",
+    sub: "Fatalities, hospitalisation, and medical leave of more than 3 days must be reported within 10 days. Failure to report is an offence.",
+    area: "MOM Reporting",
+    weight: 2
+  },
+  {
+    text: "Is your first aid kit properly stocked, and does at least one staff member hold a valid First Aid certificate?",
+    sub: "First Aid certificates are valid for 2 years. Expired certification is one of the most common compliance gaps found during inspections.",
+    area: "First Aid",
+    weight: 1
+  },
+  {
+    text: "Do you conduct regular safety training and toolbox talks — and keep records of attendance?",
+    sub: "Training must be documented with sign-off sheets. MOM may ask to see training records during an inspection.",
+    area: "Training Records",
+    weight: 1
+  },
+  {
+    text: "Is there a named person responsible for maintaining your WSH system on an ongoing basis?",
+    sub: "Depending on your industry and headcount, a registered WSH Officer may be legally required. At minimum, someone must own safety.",
+    area: "WSH Responsibility",
+    weight: 2
+  }
+];
+
+// State
+let current = 0;
+const answers = new Array(questions.length).fill(null); // null | 'yes' | 'no' | 'unsure'
+
+function renderQuestion() {
+  const q = questions[current];
+  document.getElementById('qNum').textContent = 'Question ' + (current + 1);
+  document.getElementById('qText').textContent = q.text;
+  document.getElementById('qSub').textContent = q.sub;
+
+  const pct = Math.round((current / questions.length) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = 'Question ' + (current + 1) + ' of ' + questions.length;
+  document.getElementById('progressPct').textContent = pct + '% complete';
+
+  const answersEl = document.getElementById('qAnswers');
+  answersEl.innerHTML = '';
+
+  const opts = [
+    { value: 'yes',    icon: '&#10003;', label: 'Yes &mdash; we have this in place' },
+    { value: 'no',     icon: '&#10005;', label: 'No &mdash; we don\'t have this' },
+    { value: 'unsure', icon: '?',        label: 'Not sure / partially in place' }
+  ];
+
+  opts.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'audit-answer-btn' + (answers[current] === opt.value ? ' selected-' + opt.value : '');
+    btn.innerHTML = '<div class="audit-btn-icon">' + opt.icon + '</div><span>' + opt.label + '</span>';
+    btn.addEventListener('click', () => selectAnswer(opt.value));
+    answersEl.appendChild(btn);
+  });
+}
+
+function selectAnswer(value) {
+  answers[current] = value;
+
+  // Brief highlight then advance
+  setTimeout(() => {
+    if (current < questions.length - 1) {
+      current++;
+      renderQuestion();
+    } else {
+      showResult();
+    }
+  }, 350);
+
+  renderQuestion(); // re-render to show selection
+}
+
+function showResult() {
+  document.getElementById('progressWrap').style.display = 'none';
+  document.getElementById('questionCard').style.display = 'none';
+  const resultCard = document.getElementById('resultCard');
+  resultCard.style.display = 'block';
+
+  // Calculate score
+  let maxScore = 0;
+  let actualScore = 0;
+  answers.forEach((a, i) => {
+    const w = questions[i].weight;
+    maxScore += w * 2;
+    if (a === 'yes')    actualScore += w * 2;
+    if (a === 'unsure') actualScore += w * 1;
+    // 'no' = 0
+  });
+
+  const pct = Math.round((actualScore / maxScore) * 100);
+
+  // Score ring
+  const ring = document.getElementById('scoreRing');
+  let ringColor, statusTitle, statusText, ctaHeading, ctaText;
+
+  if (pct >= 80) {
+    ringColor = '#16a34a';
+    statusTitle = 'Good standing &mdash; keep it current';
+    statusText = 'Your workplace safety system looks solid. The main risk now is documentation drift &mdash; make sure everything stays reviewed and up to date as your business changes.';
+    ctaHeading = 'Don\'t let compliance slip';
+    ctaText = 'Strong systems need ongoing maintenance. OSS can handle the upkeep so your documentation never goes stale.';
+  } else if (pct >= 50) {
+    ringColor = '#d97706';
+    statusTitle = 'Partial compliance &mdash; gaps to address';
+    statusText = 'You have some safety foundations in place, but there are gaps that could expose you to MOM notices or stop-work orders. These are fixable &mdash; but they need attention now, not after an incident.';
+    ctaHeading = 'Close the gaps before MOM does';
+    ctaText = 'A free 30-minute consultation will identify exactly what needs fixing and give you a clear action plan.';
+  } else {
+    ringColor = '#dc2626';
+    statusTitle = 'High risk &mdash; immediate action needed';
+    statusText = 'Your workplace has significant WSH gaps that leave you exposed to enforcement action, fines, and liability. If MOM visited today, this would result in notices or worse. This is fixable, but you need to act now.';
+    ctaHeading = 'Don\'t wait for an inspector';
+    ctaText = 'Book a free call today. We\'ll tell you exactly what you need, in plain English, with no pressure to commit.';
+  }
+
+  ring.style.background = ringColor + '1a';
+  ring.style.border = '3px solid ' + ringColor;
+  document.getElementById('scoreNum').style.color = ringColor;
+  document.getElementById('scoreNum').textContent = pct + '%';
+
+  document.getElementById('resultStatus').innerHTML =
+    '<h2 style="color:' + ringColor + '">' + statusTitle + '</h2><p>' + statusText + '</p>';
+
+  // Breakdown
+  const breakdown = document.getElementById('resultBreakdown');
+  breakdown.innerHTML = '';
+  answers.forEach((a, i) => {
+    const item = document.createElement('div');
+    item.className = 'result-item ' + (a === 'yes' ? 'ok' : a === 'unsure' ? 'warn' : 'risk');
+    item.innerHTML = '<span class="result-item-icon">' +
+      (a === 'yes' ? '&#10003;' : a === 'unsure' ? '!' : '&#10005;') +
+      '</span><span><strong>' + questions[i].area + '</strong> &mdash; ' +
+      (a === 'yes' ? 'In place' : a === 'unsure' ? 'Partially / unsure' : 'Not in place') +
+      '</span>';
+    breakdown.appendChild(item);
+  });
+
+  document.getElementById('resultCta').innerHTML =
+    '<h3>' + ctaHeading + '</h3>' +
+    '<p>' + ctaText + '</p>' +
+    '<div class="result-cta-btns">' +
+      '<a href="contact.html" class="btn btn-accent">Book free consultation &rarr;</a>' +
+      '<a href="https://wa.me/6589534583" class="btn btn-whatsapp">WhatsApp us now</a>' +
+    '</div>' +
+    '<div style="margin-top:20px;">' +
+      '<button class="btn-retake" onclick="retake()">&#8635; Retake the audit</button>' +
+    '</div>';
+}
+
+function retake() {
+  current = 0;
+  answers.fill(null);
+  document.getElementById('progressWrap').style.display = 'block';
+  document.getElementById('questionCard').style.display = 'block';
+  document.getElementById('resultCard').style.display = 'none';
+  renderQuestion();
+}
+
+renderQuestion();
+</script>
+</body>
+</html>
