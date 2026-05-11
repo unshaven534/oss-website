@@ -1747,3 +1747,30 @@ section { position: relative; z-index: 2; }
   .trust-item { min-width: 100%; }
   .footer-bottom { flex-direction: column; align-items: flex-start; }
 }
+
+/* =========================================================
+   WhatsApp Floating Button
+   ========================================================= */
+.whatsapp-float {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 999;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #25D366;
+  box-shadow: 0 4px 18px rgba(37,211,102,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.whatsapp-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 26px rgba(37,211,102,0.55);
+}
+.whatsapp-float svg {
+  display: block;
+}
