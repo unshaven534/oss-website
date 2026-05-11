@@ -486,7 +486,7 @@
       <div class="step-card">
         <div class="step-number">Step 03</div>
         <h3>You get paid</h3>
-        <p>You earn 10% of their monthly fee from month 1, paid monthly for up to 6 months. If they stay all 6 months, you collect the full amount. If they leave early, payments stop.</p>
+        <p>Once the referred client completes 3 consecutive months on their subscription, your one-time reward is calculated and transferred within 14 working days.</p>
       </div>
     </div>
   </div>
@@ -497,7 +497,7 @@
   <div class="container">
     <div class="section-heading">
       <h2>Your referral reward</h2>
-      <p>10% of the client&rsquo;s monthly fee, paid every month they stay &mdash; for up to 6 months. No waiting until the end.</p>
+      <p>10% of the client&rsquo;s 3-month contract value, paid as a one-time reward after they complete 3 months.</p>
     </div>
     <div class="reward-grid">
 
@@ -510,7 +510,7 @@
           </div>
           <div class="tier-reward">
             <div class="tier-pct">10%</div>
-            <div class="tier-basis">per month &times; up to 6 months</div>
+            <div class="tier-basis">10% of 3-month contract value</div>
           </div>
         </div>
         <div class="tier-card featured">
@@ -520,7 +520,7 @@
           </div>
           <div class="tier-reward">
             <div class="tier-pct">10%</div>
-            <div class="tier-basis">per month &times; up to 6 months</div>
+            <div class="tier-basis">10% of 3-month contract value</div>
           </div>
         </div>
         <div class="tier-card">
@@ -530,11 +530,11 @@
           </div>
           <div class="tier-reward">
             <div class="tier-pct">10%</div>
-            <div class="tier-basis">per month &times; up to 6 months</div>
+            <div class="tier-basis">10% of 3-month contract value</div>
           </div>
         </div>
         <p style="font-size:0.8rem; color:rgba(250,247,242,0.4); margin-top:8px; line-height:1.5;">
-          Payments start from month 1. If the client cancels early, payments stop at that point. Custom pricing may vary.
+          Paid once after the client completes 3 months. Custom pricing may vary.
         </p>
       </div>
 
@@ -554,9 +554,9 @@
           <input type="number" id="calcMonthly" min="650" step="50" value="1200" placeholder="e.g. 1200">
         </div>
         <div class="calc-result">
-          <div class="calc-result-label">Your monthly reward</div>
-          <div class="calc-result-amount" id="calcAmount">S$120</div>
-          <div class="calc-result-note">Paid each month for up to 6 months &mdash; S$<span id="calcTotal"></span> total if client stays all 6</div>
+          <div class="calc-result-label">Your one-time reward</div>
+          <div class="calc-result-amount" id="calcAmount">S$360</div>
+          <div class="calc-result-note">Paid once after the client completes 3 months</div>
         </div>
         <p style="font-size:0.75rem; color:rgba(250,247,242,0.35); margin-top:14px; line-height:1.5;">
           This is an estimate only. Actual reward confirmed by OSS after the 6-month qualifying period.
@@ -580,8 +580,8 @@
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 2v14M2 9h14"/></svg>
         </div>
         <div>
-          <h4>Up to 6 months recurring</h4>
-          <p>You earn 10% of the client&rsquo;s monthly fee each month they stay, for a maximum of 6 months. Payments start from month 1.</p>
+          <h4>3-month qualifying period</h4>
+          <p>The referred client must complete 3 consecutive months on a paid OSS subscription before the reward is released.</p>
         </div>
       </div>
       <div class="term-item">
@@ -589,8 +589,8 @@
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="4" width="14" height="11" rx="1"/><path d="M6 4V3a1 1 0 011-1h4a1 1 0 011 1v1"/><path d="M9 9v3"/></svg>
         </div>
         <div>
-          <h4>Monthly payment</h4>
-          <p>Payments are made monthly, within 14 days of each billing cycle. No lump sum wait &mdash; you get paid as the client pays OSS.</p>
+          <h4>One-time payout</h4>
+          <p>Your reward is paid in one transfer within 14 working days of the 3-month mark. No ongoing admin, no monthly tracking.</p>
         </div>
       </div>
       <div class="term-item">
@@ -598,8 +598,8 @@
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="9" r="7"/><path d="M9 5v4l3 3"/></svg>
         </div>
         <div>
-          <h4>Early exit protection</h4>
-          <p>If the client cancels before 6 months, your payments stop at the same time. No clawbacks on amounts already paid.</p>
+          <h4>Early exit — no reward</h4>
+          <p>If the client cancels before completing 3 months, no reward is paid. The full 3-month period must be fulfilled.</p>
         </div>
       </div>
       <div class="term-item">
@@ -725,7 +725,7 @@
           </div>
 
           <div class="form-note-box">
-            <strong>How you get paid:</strong> You earn <strong>10% of the client&rsquo;s monthly fee</strong> for every month they stay on their subscription, up to a maximum of <strong>6 months</strong>. Payments begin from month 1 &mdash; no waiting. If the client cancels early, payments stop at that point.
+            <strong>How you get paid:</strong> Your reward is <strong>10% of the client&rsquo;s 3-month contract value</strong>, paid as a one-time transfer within 14 days of them completing 3 months on a paid OSS subscription.
           </div>
 
           <div class="form-submit-row">
@@ -810,11 +810,8 @@ const calcAmount  = document.getElementById('calcAmount');
 function updateCalc() {
   const [basePrice, rate] = calcPackage.value.split(',');
   const monthly = parseFloat(calcMonthly.value) || parseFloat(basePrice);
-  const reward  = monthly * parseFloat(rate);
-  const total   = reward * 6;
+  const reward  = monthly * 3 * parseFloat(rate);
   calcAmount.textContent = 'S$' + reward.toLocaleString('en-SG', {minimumFractionDigits:0, maximumFractionDigits:0});
-  const totalSpan = document.getElementById('calcTotal');
-  if (totalSpan) totalSpan.textContent = total.toLocaleString('en-SG', {minimumFractionDigits:0, maximumFractionDigits:0});
 }
 
 calcPackage.addEventListener('change', () => {
