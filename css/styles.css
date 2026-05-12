@@ -1888,3 +1888,72 @@ section { position: relative; z-index: 2; }
   .trust-item { min-width: 100%; }
   .footer-bottom { flex-direction: column; align-items: flex-start; }
 }
+
+/* =========================================================
+   Navigation — Dark Navy Theme Override
+   ========================================================= */
+.nav {
+  background: rgba(10, 26, 46, 0.97);
+  border-bottom: 1px solid rgba(250, 247, 242, 0.08);
+}
+.nav .logo img {
+  filter: brightness(0) invert(1);
+  opacity: 0.92;
+}
+.nav-links a {
+  color: rgba(250, 247, 242, 0.75) !important;
+}
+.nav-links a:hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #FAF7F2 !important;
+}
+.nav-links a.active {
+  background: rgba(244, 196, 48, 0.1) !important;
+  color: var(--gold-400) !important;
+}
+.nav-toggle { color: rgba(250, 247, 242, 0.78); }
+.nav .nav-dropdown-btn { color: rgba(250, 247, 242, 0.75) !important; }
+.nav .nav-dropdown-btn:hover,
+.nav .nav-dropdown.open .nav-dropdown-btn {
+  color: #FAF7F2 !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+.nav-cta.btn-primary,
+.btn-primary.nav-cta {
+  background: var(--gold-500) !important;
+  color: var(--navy-900) !important;
+  box-shadow: none;
+}
+.nav-cta.btn-primary:hover,
+.btn-primary.nav-cta:hover {
+  background: var(--gold-400) !important;
+  transform: translateY(-1px);
+}
+
+/* Free Audit pill */
+.btn-audit {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 18px;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 100px;
+  background: var(--orange-500);
+  color: #fff;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.2s, transform 0.2s;
+  border: none;
+  cursor: pointer;
+}
+.btn-audit:hover { background: var(--orange-600); transform: translateY(-1px); }
+
+@media (max-width: 960px) {
+  .nav-links { background: #0A1A2E !important; border-bottom: 1px solid rgba(250,247,242,0.08); }
+  .nav-links a { padding: 14px 12px; }
+  .nav-dropdown-menu { background: rgba(255,255,255,0.06) !important; }
+  .btn-audit { display: none; }
+}
