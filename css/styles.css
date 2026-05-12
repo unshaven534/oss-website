@@ -1795,3 +1795,6 @@ section { position: relative; z-index: 2; }
 .nav-dropdown-menu .sub-link:hover {
   color: var(--orange-500) !important;
 }
+
+.nav-dropdown-menu li { list-style: none !important; }
+.nav-dropdown-menu li.dropdown-section-label { list-style: none !important; }
