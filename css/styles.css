@@ -1897,8 +1897,8 @@ section { position: relative; z-index: 2; }
   border-bottom: 1px solid rgba(250, 247, 242, 0.08);
 }
 .nav .logo img {
-  filter: brightness(0) invert(1);
-  opacity: 0.92;
+  filter: none;
+  opacity: 1;
 }
 .nav-links a {
   color: rgba(250, 247, 242, 0.75) !important;
