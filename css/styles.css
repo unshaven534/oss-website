@@ -189,7 +189,7 @@ section { position: relative; z-index: 2; }
   text-decoration: none;
   flex-shrink: 0;
 }
-.logo img { height: 46px; width: auto; display: block; }
+.logo img { height: 42px; width: auto; display: block; }
 .nav-links {
   display: flex;
   align-items: center;
@@ -199,9 +199,9 @@ section { position: relative; z-index: 2; }
 .nav-links a {
   color: var(--navy-800);
   text-decoration: none;
-  font-size: 0.88rem;
+  font-size: 0.94rem;
   font-weight: 500;
-  padding: 8px 11px;
+  padding: 10px 16px;
   border-radius: var(--radius-sm);
   transition: all 0.2s ease;
   white-space: nowrap;
