@@ -2171,3 +2171,20 @@ section { position: relative; z-index: 2; }
 
 /* --- Ensure images never overflow on any screen --- */
 img, video, svg { max-width: 100%; }
+
+/* nav-toggle FORCE orange */
+.nav .nav-inner button.nav-toggle,
+button.nav-toggle,
+.nav-toggle {
+  color: #E8833A !important;
+  stroke: #E8833A !important;
+}
+.nav .nav-inner button.nav-toggle svg,
+.nav-toggle svg {
+  stroke: #E8833A !important;
+  color: #E8833A !important;
+}
+.nav .nav-inner button.nav-toggle path,
+.nav-toggle path {
+  stroke: #E8833A !important;
+}
