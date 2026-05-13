@@ -2031,3 +2031,143 @@ section { position: relative; z-index: 2; }
   z-index: 0;
   mix-blend-mode: screen;
 }
+
+/* =========================================================
+   MOBILE OPTIMISATION — 480px and below
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+  /* --- Sections: tighter vertical padding --- */
+  .hero        { padding: 40px 0 64px; }
+  .how         { padding: 56px 0; }
+  .packages    { padding: 56px 0; }
+  .why         { padding: 56px 0; }
+  .philosophy  { padding: 72px 0; }
+  .blog-teaser { padding: 56px 0; }
+  .final-cta   { padding: 16px 0 56px; }
+  .story       { padding: 56px 0; }
+  .problem     { padding: 56px 0; }
+  .faq         { padding: 56px 0; }
+
+  /* --- Nav: tighter inner padding --- */
+  .nav-inner { padding: 12px 16px; gap: 12px; }
+  .logo img  { height: 36px; }
+  .btn-audit { display: none; }
+
+  /* --- Nav dropdown: full width on mobile --- */
+  .nav-dropdown-menu {
+    position: static !important;
+    transform: none !important;
+    width: 100%;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    border-left: 2px solid rgba(255,255,255,0.15) !important;
+    margin: 4px 0 4px 12px;
+  }
+
+  /* --- Hero --- */
+  .hero h1    { font-size: clamp(2rem, 9vw, 3rem); }
+  .hero-lede  { font-size: 1rem; }
+  .hero-ctas  { flex-direction: column; gap: 10px; }
+  .hero-ctas .btn { width: 100%; justify-content: center; }
+  .hero-meta  { gap: 14px; }
+  .hero-badge { display: none; }
+  .hero-star  { display: none; }
+
+  /* --- Trust bar --- */
+  .trust-item { min-width: 100%; }
+
+  /* --- Packages --- */
+  .package { padding: 28px 20px; }
+  .package-featured { transform: scale(1); }
+  .package-featured:hover { transform: translateY(-4px); }
+  .packages-header { margin-bottom: 40px; }
+  .packages-header h2 { font-size: 2rem; }
+
+  /* --- Why OSS grid --- */
+  .why-cell { padding: 28px 20px; }
+  .why-cell h3 { font-size: 1.35rem; }
+
+  /* --- How it works --- */
+  .how-step { padding: 32px 20px; }
+  .how-header { margin-bottom: 40px; }
+
+  /* --- Final CTA --- */
+  .final-cta-inner {
+    padding: 36px 24px;
+    border-radius: var(--radius-lg);
+  }
+  .final-cta-inner::before { display: none; }
+  .final-cta-content h2 { font-size: 1.8rem; }
+  .final-cta-actions .btn { width: 100%; justify-content: center; }
+
+  /* --- Blog cards --- */
+  .blog-card-body { padding: 20px; }
+
+  /* --- Contact & forms --- */
+  .contact-form { padding: 24px 16px; }
+  .form-row { grid-template-columns: 1fr; gap: 0; }
+  .form-group input,
+  .form-group select,
+  .form-group textarea { font-size: 16px; } /* prevents iOS zoom */
+
+  /* --- Comparison table --- */
+  .compare-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+  /* --- Footer --- */
+  .footer { padding: 48px 0 24px; }
+  .footer-grid { gap: 28px; }
+
+  /* --- Page hero (subpages) --- */
+  .page-hero { padding: 36px 0 28px; }
+  .page-hero h1 { font-size: clamp(1.9rem, 8vw, 2.8rem); }
+
+  /* --- Article body --- */
+  .article-body p  { font-size: 1rem; }
+  .article-body h2 { font-size: 1.5rem; margin-top: 40px; }
+  .article-body ul li,
+  .article-body ol li { font-size: 1rem; }
+
+  /* --- Watermark: smaller on mobile --- */
+  .hero::after, .packages::after, .how::after,
+  .blog-teaser::after, .problem::after, .story::after,
+  .why::after, .trust-bar::after, .final-cta::after {
+    width: 120px;
+    height: 120px;
+  }
+
+  /* --- WhatsApp button: smaller, tighter corner --- */
+  .whatsapp-float {
+    width: 50px;
+    height: 50px;
+    bottom: 20px;
+    right: 20px;
+  }
+
+  /* --- Philosophy --- */
+  .philosophy-quote { font-size: clamp(1.8rem, 7vw, 2.8rem); }
+
+  /* --- Headings scale --- */
+  h2 { font-size: clamp(1.7rem, 6vw, 2.4rem); }
+  h3 { font-size: clamp(1.1rem, 4vw, 1.4rem); }
+}
+
+/* --- Tablet: 481px – 768px --- */
+@media (min-width: 481px) and (max-width: 768px) {
+  .hero h1 { font-size: clamp(2.2rem, 7vw, 3.4rem); }
+  .hero    { padding: 56px 0 80px; }
+  .hero-ctas { flex-wrap: wrap; }
+  .packages { padding: 72px 0; }
+  .package-featured { transform: scale(1); }
+  .final-cta-inner { padding: 48px 32px; }
+  .final-cta-actions .btn { width: 100%; }
+  .contact-form { padding: 28px 20px; }
+  .form-group input,
+  .form-group select,
+  .form-group textarea { font-size: 16px; }
+  .compare-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+}
+
+/* --- Ensure images never overflow on any screen --- */
+img, video, svg { max-width: 100%; }
