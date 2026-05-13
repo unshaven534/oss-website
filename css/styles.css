@@ -1984,3 +1984,50 @@ section { position: relative; z-index: 2; }
 .nav-dropdown-menu .sub-link:hover {
   color: #FAF7F2 !important;
 }
+
+/* =========================================================
+   Logo Watermark — Option D
+   Light sections: bottom-right, dark logo
+   Dark sections:  top-left, lightened logo
+   ========================================================= */
+
+.hero::after,
+.packages::after,
+.how::after,
+.blog-teaser::after,
+.problem::after,
+.story::after {
+  content: '';
+  position: absolute;
+  bottom: -24px;
+  right: -24px;
+  width: 220px;
+  height: 220px;
+  background-image: url('../assets/logo.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom right;
+  opacity: 0.06;
+  pointer-events: none;
+  z-index: 0;
+  mix-blend-mode: multiply;
+}
+
+.why::after,
+.trust-bar::after,
+.final-cta::after {
+  content: '';
+  position: absolute;
+  top: -24px;
+  left: -24px;
+  width: 220px;
+  height: 220px;
+  background-image: url('../assets/logo.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: top left;
+  opacity: 0.09;
+  pointer-events: none;
+  z-index: 0;
+  mix-blend-mode: screen;
+}
