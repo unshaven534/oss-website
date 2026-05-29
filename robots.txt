@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Block pages Google shouldn't index
+Disallow: /404.html
+
+# Sitemap location
+Sitemap: https://www.overwatch.com.sg/sitemap.xml
