@@ -105,6 +105,13 @@
     <priority>0.7</priority>
   </url>
 
+  <url>
+    <loc>https://www.overwatch.com.sg/blog/director-liability-wsh-ruling-2025.html</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- Legal -->
   <url>
     <loc>https://www.overwatch.com.sg/privacy-policy.html</loc>
