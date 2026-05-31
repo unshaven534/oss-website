@@ -2422,3 +2422,27 @@ a.nav-plain-link {
   transition: color 0.15s;
 }
 a.nav-plain-link:hover { color: var(--gold-400); }
+
+
+/* =========================================================
+   NAV HIDDEN — sidebar handles all navigation
+   ========================================================= */
+.nav { display: none !important; }
+
+/* Sidebar now full height from top */
+.site-sidebar { top: 0 !important; height: 100vh !important; }
+
+/* Remove top padding from body that was for fixed nav */
+body { padding-top: 0 !important; }
+
+/* Sidebar logo area */
+.sidebar-logo-wrap {
+  padding: 20px 20px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  margin-bottom: 8px;
+}
+.sidebar-logo-wrap img {
+  height: 36px;
+  width: auto;
+  display: block;
+}
