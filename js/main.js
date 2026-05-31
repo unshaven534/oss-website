@@ -4,6 +4,109 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  // ---- SIDEBAR — inject on every page ----
+  const sidebarHTML = `
+  <aside class="site-sidebar" id="siteSidebar" aria-label="Site navigation">
+    <nav class="sidebar-nav">
+      <div class="sidebar-section">
+        <div class="sidebar-section-label">Main</div>
+        <a href="/index.html" class="sidebar-link">Home</a>
+        <a href="/services.html" class="sidebar-link">Services</a>
+        <a href="/packages.html" class="sidebar-link">Packages</a>
+        <a href="/why-oss.html" class="sidebar-link">Why OSS</a>
+        <a href="/contact.html" class="sidebar-link">Contact</a>
+        <a href="/audit.html" class="sidebar-link">Free Audit</a>
+      </div>
+      <hr class="sidebar-divider">
+      <div class="sidebar-section">
+        <div class="sidebar-section-label">Trades</div>
+        <a href="/industry-fnb.html" class="sidebar-link">F&amp;B</a>
+        <a href="/industry-workshop.html" class="sidebar-link">Workshops</a>
+        <a href="/industry-warehouse.html" class="sidebar-link">Warehouses</a>
+      </div>
+      <hr class="sidebar-divider">
+      <div class="sidebar-section">
+        <div class="sidebar-section-label">Resources</div>
+        <a href="/blog/index.html" class="sidebar-link">Blog &amp; Guides</a>
+        <a href="/cost-calculator.html" class="sidebar-link">Cost Calculator</a>
+        <a href="/faq.html" class="sidebar-link">FAQ</a>
+        <a href="/referral.html" class="sidebar-link">Referral</a>
+      </div>
+      <hr class="sidebar-divider">
+      <div class="sidebar-section">
+        <div class="sidebar-section-label">Blog Articles</div>
+        <a href="/blog/mom-compliance-checklist.html" class="sidebar-link">MOM Compliance Checklist</a>
+        <a href="/blog/stop-work-order-cost.html" class="sidebar-link">Stop-Work Order Cost</a>
+        <a href="/blog/bizsafe-level-3-guide.html" class="sidebar-link">bizSAFE Level 3 Guide</a>
+        <a href="/blog/do-you-need-a-wsho-singapore.html" class="sidebar-link">Do You Need a WSHO?</a>
+        <a href="/blog/director-liability-wsh-ruling-2025.html" class="sidebar-link">Director Liability Ruling</a>
+        <a href="/blog/wsho-vs-wshc-singapore.html" class="sidebar-link">WSHO vs WSHC</a>
+      </div>
+      <hr class="sidebar-divider">
+      <div class="sidebar-section">
+        <div class="sidebar-section-label">Legal</div>
+        <a href="/privacy-policy.html" class="sidebar-link">Privacy Policy</a>
+        <a href="/terms.html" class="sidebar-link">Terms</a>
+      </div>
+    </nav>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <button class="sidebar-toggle" id="sidebarToggle" aria-label="Open navigation">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 5h14M3 10h14M3 15h14"/></svg>
+  </button>`;
+
+  document.body.insertAdjacentHTML('afterbegin', sidebarHTML);
+
+  // Mark active link
+  const path = window.location.pathname;
+  document.querySelectorAll('.sidebar-link').forEach(link => {
+    try {
+      const lp = new URL(link.href, window.location.origin).pathname;
+      if (lp === path || (path === '/' && lp === '/index.html') || (path.endsWith('/') && lp === path + 'index.html')) {
+        link.classList.add('active');
+      }
+    } catch(e) {}
+  });
+
+  // Desktop layout
+  const applyLayout = () => {
+    document.body.classList.toggle('has-sidebar', window.innerWidth >= 1100);
+  };
+  applyLayout();
+  window.addEventListener('resize', applyLayout, { passive: true });
+
+  // Mobile toggle
+  const sidebar  = document.getElementById('siteSidebar');
+  const overlay  = document.getElementById('sidebarOverlay');
+  const toggleBtn = document.getElementById('sidebarToggle');
+
+  toggleBtn.addEventListener('click', () => {
+    const isOpen = sidebar.classList.toggle('open');
+    overlay.classList.toggle('active', isOpen);
+  });
+  overlay.addEventListener('click', () => {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('active');
+  });
+
+  // Convert Trades and Resources nav dropdowns to plain links
+  document.querySelectorAll('.nav-dropdown').forEach(dropdown => {
+    const btn = dropdown.querySelector('.nav-dropdown-btn');
+    if (!btn) return;
+    const label = [...btn.childNodes]
+      .filter(n => n.nodeType === 3)
+      .map(n => n.textContent.trim())
+      .join('').trim();
+    const destinations = { 'Trades': '/industry-fnb.html', 'Resources': '/blog/index.html' };
+    if (destinations[label]) {
+      const a = document.createElement('a');
+      a.href = destinations[label];
+      a.textContent = label;
+      a.className = 'nav-plain-link';
+      dropdown.replaceWith(a);
+    }
+  });
+
   // ---- Scroll reveal animations ----
   const revealEls = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window && revealEls.length) {
@@ -17,89 +120,54 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
     revealEls.forEach(el => observer.observe(el));
   } else {
-    // Fallback: show all revealed immediately
     revealEls.forEach(el => el.classList.add('visible'));
   }
 
   // ---- Mobile nav toggle ----
   const navToggle = document.querySelector('.nav-toggle');
-  const navLinks = document.querySelector('.nav-links');
+  const navLinks  = document.querySelector('.nav-links');
   if (navToggle && navLinks) {
     navToggle.addEventListener('click', () => {
       const isOpen = navLinks.classList.toggle('open');
       navToggle.setAttribute('aria-expanded', isOpen);
     });
-    // Close nav on link click (mobile)
     navLinks.querySelectorAll('a').forEach(a => {
       a.addEventListener('click', () => navLinks.classList.remove('open'));
     });
   }
 
-  // ---- Nav dropdown (Resources) ----
-  const dropdownBtns = document.querySelectorAll('.nav-dropdown-btn');
-  dropdownBtns.forEach(btn => {
-    const dropdown = btn.closest('.nav-dropdown');
-    if (dropdown) {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        // Close other open dropdowns
-        document.querySelectorAll('.nav-dropdown.open').forEach(d => {
-          if (d !== dropdown) d.classList.remove('open');
-        });
-        dropdown.classList.toggle('open');
-      });
-    }
-  });
-
   // Close dropdowns when clicking outside
   document.addEventListener('click', (e) => {
     if (!e.target.closest('.nav-dropdown')) {
-      document.querySelectorAll('.nav-dropdown.open').forEach(d => {
-        d.classList.remove('open');
-      });
+      document.querySelectorAll('.nav-dropdown.open').forEach(d => d.classList.remove('open'));
     }
   });
 
-  // ---- Subtle nav intensification on scroll ----
+  // ---- Nav shadow on scroll ----
   const nav = document.querySelector('.nav');
   if (nav) {
     const onScroll = () => {
-      if (window.scrollY > 30) {
-        nav.style.boxShadow = '0 1px 3px rgba(15, 31, 53, 0.06)';
-      } else {
-        nav.style.boxShadow = 'none';
-      }
+      nav.style.boxShadow = window.scrollY > 30 ? '0 1px 3px rgba(15,31,53,0.06)' : 'none';
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
   }
 
-  // ---- Contact form handling (client-side only — wire to backend on deploy) ----
+  // ---- Contact form ----
   const contactForm = document.querySelector('#contactForm');
   if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const formData = new FormData(contactForm);
-      const data = Object.fromEntries(formData.entries());
-
-      // For prototype: just log and show a success state.
-      // On real deploy, POST this to Formspree, Netlify Forms, or your backend.
-      console.log('Form submitted:', data);
-
       const submitBtn = contactForm.querySelector('[type="submit"]');
       const originalText = submitBtn.textContent;
       submitBtn.textContent = 'Sent! We\'ll reply within 2 business hours.';
       submitBtn.disabled = true;
-      submitBtn.style.background = '#15803D';
-      submitBtn.style.color = 'white';
-
+      submitBtn.style.cssText = 'background:#15803D;color:white;';
       setTimeout(() => {
         contactForm.reset();
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
-        submitBtn.style.background = '';
-        submitBtn.style.color = '';
+        submitBtn.style.cssText = '';
       }, 4500);
     });
   }
