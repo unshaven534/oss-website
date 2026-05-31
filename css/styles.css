@@ -2285,7 +2285,7 @@ button.nav-toggle,
 /* Footnotes inside article-body */
 .article-body .footnotes-block {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.58rem;
   color: var(--gray-400);
   line-height: 1.85;
   border-top: 1px solid var(--gray-200);
@@ -2294,7 +2294,7 @@ button.nav-toggle,
 }
 .article-body .footnotes-block .fn-title {
   font-weight: 600;
-  font-size: 0.72rem;
+  font-size: 0.58rem;
   color: var(--gray-500);
   margin-bottom: 10px;
   text-transform: uppercase;
@@ -2302,7 +2302,7 @@ button.nav-toggle,
 }
 .article-body .footnotes-block p {
   margin-bottom: 2px;
-  font-size: 0.7rem;
+  font-size: 0.58rem;
   color: var(--gray-400);
 }
 
