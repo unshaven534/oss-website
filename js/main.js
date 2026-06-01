@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // ---- SIDEBAR — inject on every page ----
   const sidebarHTML = `
   <aside class="site-sidebar" id="siteSidebar" aria-label="Site navigation">
+    <div class="sidebar-logo-wrap">
+      <a href="/index.html"><img src="/assets/logo.jpg" alt="Overwatch Strategic Solutions"></a>
+    </div>
     <nav class="sidebar-nav">
       <div class="sidebar-section">
         <div class="sidebar-section-label">Main</div>
