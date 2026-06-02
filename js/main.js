@@ -185,4 +185,24 @@ document.addEventListener('DOMContentLoaded', () => {
   waBtn.innerHTML = '<svg width="28" height="28" viewBox="0 0 32 32" fill="white"><path d="M16 0C7.163 0 0 7.163 0 16c0 2.822.733 5.473 2.018 7.774L.057 31.314a.75.75 0 00.918.918l7.51-1.957A15.938 15.938 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333a13.27 13.27 0 01-6.747-1.833l-.484-.29-5.023 1.309 1.337-4.88-.317-.502A13.267 13.267 0 012.667 16C2.667 8.636 8.636 2.667 16 2.667S29.333 8.636 29.333 16 23.364 29.333 16 29.333zm7.27-9.874c-.397-.199-2.35-1.16-2.714-1.292-.363-.133-.628-.199-.892.199s-1.026 1.292-1.257 1.557c-.232.264-.464.298-.861.1-.397-.2-1.676-.618-3.193-1.97-1.18-1.052-1.977-2.35-2.208-2.748-.232-.397-.025-.612.174-.81.178-.178.397-.464.596-.695.198-.232.264-.397.397-.662.132-.264.066-.497-.033-.695-.1-.2-.892-2.152-1.224-2.946-.322-.773-.65-.668-.892-.68-.231-.012-.496-.015-.761-.015-.264 0-.695.1-1.059.497-.363.397-1.39 1.358-1.39 3.312s1.423 3.843 1.622 4.108c.198.264 2.8 4.277 6.782 5.997.948.41 1.687.654 2.264.837.951.303 1.816.26 2.5.157.763-.114 2.35-.96 2.682-1.888.331-.928.331-1.723.232-1.888-.1-.165-.363-.265-.76-.464z"/></svg>';
   document.body.appendChild(waBtn);
 
+  // ---- UEN correction + visibility ----
+  // Correct UEN is 201534119G (not 201536119G)
+  document.querySelectorAll('.footer-uen, .footer-credential, .footer-bottom').forEach(el => {
+    if (el.innerHTML && el.innerHTML.includes('201536119G')) {
+      el.innerHTML = el.innerHTML.replace(/201536119G/g, '201534119G');
+    }
+  });
+
+  // Show UEN only on homepage and terms page
+  const uenPath = window.location.pathname;
+  const showUEN = uenPath === '/' ||
+                  uenPath.endsWith('/index.html') ||
+                  uenPath.endsWith('/terms.html');
+  if (!showUEN) {
+    document.querySelectorAll('.footer-uen').forEach(el => el.remove());
+    document.querySelectorAll('.footer-credential').forEach(el => {
+      if (el.textContent.includes('UEN')) el.remove();
+    });
+  }
+
 });
