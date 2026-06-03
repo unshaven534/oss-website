@@ -2446,3 +2446,93 @@ body { padding-top: 0 !important; }
   width: auto;
   display: block;
 }
+
+
+/* ============================================================
+   STATS STRIP
+   ============================================================ */
+.stats-strip {
+  background: var(--navy-900);
+  border-top: 1px solid var(--navy-700);
+  border-bottom: 1px solid var(--navy-700);
+  padding: 48px 0;
+}
+.stats-strip-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+.stats-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 24px 32px;
+  border-right: 1px solid var(--navy-700);
+}
+.stats-item:last-child { border-right: none; }
+.stats-number {
+  font-family: var(--font-display);
+  font-size: 3.2rem;
+  font-weight: 700;
+  color: var(--orange-400);
+  line-height: 1;
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
+}
+.stats-plus, .stats-pct {
+  font-size: 2rem;
+  color: var(--orange-300);
+  vertical-align: top;
+  margin-top: 4px;
+  display: inline-block;
+}
+.stats-cert-badge {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--navy-900);
+  background: var(--gold-500);
+  padding: 6px 14px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  white-space: nowrap;
+}
+.stats-cert-mom {
+  background: var(--orange-500);
+}
+.stats-label {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--gray-400);
+  line-height: 1.45;
+}
+@media (max-width: 768px) {
+  .stats-strip-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .stats-item:nth-child(2) { border-right: none; }
+  .stats-item:nth-child(1),
+  .stats-item:nth-child(2) {
+    border-bottom: 1px solid var(--navy-700);
+  }
+  .stats-number { font-size: 2.4rem; }
+}
+@media (max-width: 480px) {
+  .stats-strip-grid { grid-template-columns: 1fr 1fr; }
+  .stats-item { padding: 20px 16px; }
+}
+
+/* ============================================================
+   HERO BLOB ANIMATION
+   ============================================================ */
+@keyframes blobDrift {
+  0%   { transform: translate(0, 0) scale(1); }
+  33%  { transform: translate(12px, -18px) scale(1.04); }
+  66%  { transform: translate(-10px, 10px) scale(0.97); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+.hero-blob { animation: blobDrift 14s ease-in-out infinite; }
