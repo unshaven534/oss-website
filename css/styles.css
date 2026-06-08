@@ -2536,3 +2536,44 @@ body { padding-top: 0 !important; }
   100% { transform: translate(0, 0) scale(1); }
 }
 .hero-blob { animation: blobDrift 14s ease-in-out infinite; }
+
+
+/* ============================================================
+   DPO / PDPA OBLIGATION FEATURE BADGES
+   ============================================================ */
+
+/* "Future" badge inline in feature list items */
+.feat-future,
+.tbl-future {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--navy-900);
+  background: var(--gold-400);
+  padding: 2px 7px;
+  border-radius: 3px;
+  vertical-align: middle;
+  margin-left: 6px;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+/* DPO group header row inside a package feature list */
+.feat-dpo-group {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--navy-700);
+}
+.feat-dpo-group span strong {
+  color: var(--gold-400);
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+}
+
+/* Compare table "Future" badge */
+.compare-table .tbl-future {
+  background: var(--gold-300);
+  color: var(--navy-900);
+}
