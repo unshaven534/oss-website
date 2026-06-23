@@ -1,720 +1,720 @@
-!DOCTYPE html
-html lang=en
-head
-meta charset=UTF-8
-meta name=viewport content=width=device-width, initial-scale=1.0
-titleTell Us About Your Business  Overwatch Strategic Solutionstitle
-meta name=description content=Help us understand your workplace before we talk. Share your headcount, sector, and any regulatory requirements — we'll come prepared.
-meta property=ogtitle content=Tell Us About Your Business — Overwatch Strategic Solutions
-meta property=ogdescription content=A short intake form so we understand your workplace before we speak. No sales pressure, no pricing until you're ready.
-meta property=ogurl content=httpswww.overwatch.com.sgintake.html
-meta property=ogimage content=httpswww.overwatch.com.sgassetslogo.jpg
-meta property=ogsite_name content=Overwatch Strategic Solutions
-meta name=twittercard content=summary_large_image
-meta name=twittertitle content=Tell Us About Your Business — Overwatch Strategic Solutions
-link rel=preconnect href=httpsfonts.googleapis.com
-link rel=preconnect href=httpsfonts.gstatic.com crossorigin
-link href=httpsfonts.googleapis.comcss2family=Frauncesital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=IBM+Plex+Sanswght@300;400;500;600&display=swap rel=stylesheet
-link rel=stylesheet href=style.css
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tell Us About Your Business | Overwatch Strategic Solutions</title>
+<meta name="description" content="Help us understand your workplace before we talk. Share your headcount, sector, and any regulatory requirements — we'll come prepared.">
+<meta property="og:title" content="Tell Us About Your Business — Overwatch Strategic Solutions">
+<meta property="og:description" content="A short intake form so we understand your workplace before we speak. No sales pressure, no pricing until you're ready.">
+<meta property="og:url" content="https://www.overwatch.com.sg/intake.html">
+<meta property="og:image" content="https://www.overwatch.com.sg/assets/logo.jpg">
+<meta property="og:site_name" content="Overwatch Strategic Solutions">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tell Us About Your Business — Overwatch Strategic Solutions">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 
-style
-   ── Intake page specific styles ── 
+<style>
+  /* ── Intake page specific styles ── */
   .intake-hero {
-    background var(--navy, #1a2744);
-    color #fff;
-    padding 80px 0 60px;
-    text-align center;
+    background: var(--navy, #1a2744);
+    color: #fff;
+    padding: 80px 0 60px;
+    text-align: center;
   }
   .intake-hero .eyebrow {
-    display inline-block;
-    font-family 'IBM Plex Sans', sans-serif;
-    font-size 0.75rem;
-    font-weight 500;
-    letter-spacing 0.15em;
-    text-transform uppercase;
-    color var(--gold, #c9a84c);
-    margin-bottom 18px;
+    display: inline-block;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold, #c9a84c);
+    margin-bottom: 18px;
   }
   .intake-hero h1 {
-    font-family 'Fraunces', serif;
-    font-size clamp(2rem, 5vw, 3rem);
-    font-weight 400;
-    line-height 1.2;
-    margin 0 auto 20px;
-    max-width 680px;
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 400;
+    line-height: 1.2;
+    margin: 0 auto 20px;
+    max-width: 680px;
   }
   .intake-hero p {
-    font-family 'IBM Plex Sans', sans-serif;
-    font-size 1.05rem;
-    font-weight 300;
-    color rgba(255,255,255,0.75);
-    max-width 520px;
-    margin 0 auto;
-    line-height 1.65;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.75);
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.65;
   }
 
-   ── Progress bar ── 
+  /* ── Progress bar ── */
   .intake-progress {
-    background #f0ede6;
-    padding 28px 0;
-    border-bottom 1px solid #e2ddd4;
+    background: #f0ede6;
+    padding: 28px 0;
+    border-bottom: 1px solid #e2ddd4;
   }
   .progress-steps {
-    display flex;
-    align-items center;
-    justify-content center;
-    gap 0;
-    max-width 520px;
-    margin 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    max-width: 520px;
+    margin: 0 auto;
   }
   .progress-step {
-    display flex;
-    flex-direction column;
-    align-items center;
-    gap 6px;
-    flex 1;
-    position relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    flex: 1;
+    position: relative;
   }
-  .progress-stepnot(last-child)after {
-    content '';
-    position absolute;
-    top 14px;
-    left 50%;
-    width 100%;
-    height 2px;
-    background #d4cfc5;
-    z-index 0;
+  .progress-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    width: 100%;
+    height: 2px;
+    background: #d4cfc5;
+    z-index: 0;
   }
-  .progress-step.doneafter,
-  .progress-step.activeafter {
-    background var(--orange, #d4540a);
+  .progress-step.done::after,
+  .progress-step.active::after {
+    background: var(--orange, #d4540a);
   }
   .step-dot {
-    width 28px;
-    height 28px;
-    border-radius 50%;
-    background #d4cfc5;
-    border 2px solid #d4cfc5;
-    display flex;
-    align-items center;
-    justify-content center;
-    font-family 'IBM Plex Sans', sans-serif;
-    font-size 0.7rem;
-    font-weight 600;
-    color #fff;
-    position relative;
-    z-index 1;
-    transition background 0.25s, border-color 0.25s;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #d4cfc5;
+    border: 2px solid #d4cfc5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #fff;
+    position: relative;
+    z-index: 1;
+    transition: background 0.25s, border-color 0.25s;
   }
   .progress-step.active .step-dot {
-    background var(--orange, #d4540a);
-    border-color var(--orange, #d4540a);
+    background: var(--orange, #d4540a);
+    border-color: var(--orange, #d4540a);
   }
   .progress-step.done .step-dot {
-    background var(--navy, #1a2744);
-    border-color var(--navy, #1a2744);
+    background: var(--navy, #1a2744);
+    border-color: var(--navy, #1a2744);
   }
-  .progress-step.done .step-dotafter {
-    content '✓';
-    font-size 0.75rem;
+  .progress-step.done .step-dot::after {
+    content: '✓';
+    font-size: 0.75rem;
   }
   .step-label {
-    font-family 'IBM Plex Sans', sans-serif;
-    font-size 0.68rem;
-    font-weight 500;
-    letter-spacing 0.05em;
-    text-transform uppercase;
-    color #8a8378;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #8a8378;
   }
   .progress-step.active .step-label {
-    color var(--orange, #d4540a);
+    color: var(--orange, #d4540a);
   }
   .progress-step.done .step-label {
-    color var(--navy, #1a2744);
+    color: var(--navy, #1a2744);
   }
 
-   ── Form shell ── 
+  /* ── Form shell ── */
   .intake-body {
-    background #faf8f4;
-    min-height 60vh;
-    padding 60px 0 80px;
+    background: #faf8f4;
+    min-height: 60vh;
+    padding: 60px 0 80px;
   }
   .intake-card {
-    background #fff;
-    border 1px solid #e6e1d8;
-    border-radius 4px;
-    max-width 640px;
-    margin 0 auto;
-    padding 48px 52px;
-    box-shadow 0 2px 24px rgba(26,39,68,0.06);
+    background: #fff;
+    border: 1px solid #e6e1d8;
+    border-radius: 4px;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 48px 52px;
+    box-shadow: 0 2px 24px rgba(26,39,68,0.06);
   }
 
-   ── Step panels ── 
+  /* ── Step panels ── */
   .intake-step {
-    display none;
+    display: none;
   }
   .intake-step.active {
-    display block;
+    display: block;
   }
   .step-heading {
-    font-family 'Fraunces', serif;
-    font-size 1.55rem;
-    font-weight 400;
-    color var(--navy, #1a2744);
-    margin 0 0 6px;
-    line-height 1.25;
+    font-family: 'Fraunces', serif;
+    font-size: 1.55rem;
+    font-weight: 400;
+    color: var(--navy, #1a2744);
+    margin: 0 0 6px;
+    line-height: 1.25;
   }
   .step-sub {
-    font-family 'IBM Plex Sans', sans-serif;
-    font-size 0.9rem;
-    color #6b6660;
-    margin 0 0 32px;
-    line-height 1.55;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.9rem;
+    color: #6b6660;
+    margin: 0 0 32px;
+    line-height: 1.55;
   }
 
-   ── Option cards (radiocheckbox) ── 
+  /* ── Option cards (radio/checkbox) ── */
   .option-grid {
-    display grid;
-    grid-template-columns 1fr 1fr;
-    gap 10px;
-    margin-bottom 28px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 28px;
   }
   .option-grid.single-col {
-    grid-template-columns 1fr;
+    grid-template-columns: 1fr;
   }
   .option-card {
-    position relative;
+    position: relative;
   }
   .option-card input {
-    position absolute;
-    opacity 0;
-    width 0;
-    height 0;
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
   }
   .option-card label {
-    display flex;
-    align-items flex-start;
-    gap 10px;
-    padding 14px 16px;
-    border 1.5px solid #ddd9d0;
-    border-radius 3px;
-    cursor pointer;
-    transition border-color 0.18s, background 0.18s;
-    font-family 'IBM Plex Sans', sans-serif;
-    font-size 0.92rem;
-    color #2a2620;
-    line-height 1.4;
-    background #fdfcfa;
-    user-select none;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 14px 16px;
+    border: 1.5px solid #ddd9d0;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: border-color 0.18s, background 0.18s;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.92rem;
+    color: #2a2620;
+    line-height: 1.4;
+    background: #fdfcfa;
+    user-select: none;
   }
-  .option-card labelhover {
-    border-color var(--navy, #1a2744);
-    background #f5f3ef;
+  .option-card label:hover {
+    border-color: var(--navy, #1a2744);
+    background: #f5f3ef;
   }
-  .option-card inputchecked + label {
-    border-color var(--orange, #d4540a);
-    background #fef5ef;
-    color var(--navy, #1a2744);
-    font-weight 500;
+  .option-card input:checked + label {
+    border-color: var(--orange, #d4540a);
+    background: #fef5ef;
+    color: var(--navy, #1a2744);
+    font-weight: 500;
   }
   .option-icon {
-    font-size 1.1rem;
-    line-height 1;
-    flex-shrink 0;
-    margin-top 1px;
+    font-size: 1.1rem;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 1px;
   }
 
-   ── Text input ── 
+  /* ── Text input ── */
   .field-group {
-    margin-bottom 22px;
+    margin-bottom: 22px;
   }
   .field-label {
-    display block;
-    font-family 'IBM Plex Sans', sans-serif;
-    font-size 0.82rem;
-    font-weight 500;
-    letter-spacing 0.04em;
-    text-transform uppercase;
-    color #5a5650;
-    margin-bottom 8px;
+    display: block;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #5a5650;
+    margin-bottom: 8px;
   }
   .field-input,
   .field-select,
   .field-textarea {
-    width 100%;
-    padding 12px 14px;
-    border 1.5px solid #ddd9d0;
-    border-radius 3px;
-    font-family 'IBM Plex Sans', sans-serif;
-    font-size 0.95rem;
-    color #1a1814;
-    background #fdfcfa;
-    outline none;
-    transition border-color 0.18s;
-    box-sizing border-box;
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid #ddd9d0;
+    border-radius: 3px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.95rem;
+    color: #1a1814;
+    background: #fdfcfa;
+    outline: none;
+    transition: border-color 0.18s;
+    box-sizing: border-box;
   }
-  .field-inputfocus,
-  .field-selectfocus,
-  .field-textareafocus {
-    border-color var(--navy, #1a2744);
+  .field-input:focus,
+  .field-select:focus,
+  .field-textarea:focus {
+    border-color: var(--navy, #1a2744);
   }
   .field-textarea {
-    resize vertical;
-    min-height 100px;
-    line-height 1.55;
+    resize: vertical;
+    min-height: 100px;
+    line-height: 1.55;
   }
   .field-hint {
-    font-family 'IBM Plex Sans', sans-serif;
-    font-size 0.78rem;
-    color #8a8378;
-    margin-top 5px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.78rem;
+    color: #8a8378;
+    margin-top: 5px;
   }
 
-   ── Nav buttons ── 
+  /* ── Nav buttons ── */
   .step-nav {
-    display flex;
-    align-items center;
-    justify-content space-between;
-    margin-top 36px;
-    padding-top 28px;
-    border-top 1px solid #ede9e1;
-    gap 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 36px;
+    padding-top: 28px;
+    border-top: 1px solid #ede9e1;
+    gap: 12px;
   }
   .btn-back {
-    font-family 'IBM Plex Sans', sans-serif;
-    font-size 0.88rem;
-    font-weight 500;
-    color #6b6660;
-    background none;
-    border none;
-    cursor pointer;
-    padding 10px 0;
-    display flex;
-    align-items center;
-    gap 6px;
-    transition color 0.18s;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: #6b6660;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.18s;
   }
-  .btn-backhover { color var(--navy, #1a2744); }
-  .btn-back.hidden { visibility hidden; pointer-events none; }
+  .btn-back:hover { color: var(--navy, #1a2744); }
+  .btn-back.hidden { visibility: hidden; pointer-events: none; }
   .btn-next {
-    font-family 'IBM Plex Sans', sans-serif;
-    font-size 0.92rem;
-    font-weight 600;
-    color #fff;
-    background var(--navy, #1a2744);
-    border none;
-    border-radius 3px;
-    padding 13px 28px;
-    cursor pointer;
-    display flex;
-    align-items center;
-    gap 8px;
-    transition background 0.18s;
-    letter-spacing 0.01em;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: #fff;
+    background: var(--navy, #1a2744);
+    border: none;
+    border-radius: 3px;
+    padding: 13px 28px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.18s;
+    letter-spacing: 0.01em;
   }
-  .btn-nexthover { background var(--orange, #d4540a); }
-  .btn-nextdisabled { background #b0aca5; cursor not-allowed; }
+  .btn-next:hover { background: var(--orange, #d4540a); }
+  .btn-next:disabled { background: #b0aca5; cursor: not-allowed; }
 
-   ── Validation ── 
+  /* ── Validation ── */
   .error-msg {
-    font-family 'IBM Plex Sans', sans-serif;
-    font-size 0.82rem;
-    color #c0340a;
-    margin-top 8px;
-    display none;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.82rem;
+    color: #c0340a;
+    margin-top: 8px;
+    display: none;
   }
-  .error-msg.visible { display block; }
+  .error-msg.visible { display: block; }
 
-   ── Review step ── 
+  /* ── Review step ── */
   .review-table {
-    width 100%;
-    border-collapse collapse;
-    margin-bottom 28px;
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 28px;
   }
   .review-table tr {
-    border-bottom 1px solid #ede9e1;
+    border-bottom: 1px solid #ede9e1;
   }
-  .review-table trlast-child { border-bottom none; }
+  .review-table tr:last-child { border-bottom: none; }
   .review-table td {
-    padding 13px 0;
-    font-family 'IBM Plex Sans', sans-serif;
-    font-size 0.92rem;
-    vertical-align top;
+    padding: 13px 0;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.92rem;
+    vertical-align: top;
   }
-  .review-table tdfirst-child {
-    font-weight 500;
-    color #5a5650;
-    width 40%;
-    padding-right 16px;
+  .review-table td:first-child {
+    font-weight: 500;
+    color: #5a5650;
+    width: 40%;
+    padding-right: 16px;
   }
-  .review-table tdlast-child {
-    color var(--navy, #1a2744);
+  .review-table td:last-child {
+    color: var(--navy, #1a2744);
   }
 
-   ── Thank-you state ── 
+  /* ── Thank-you state ── */
   .thankyou-panel {
-    display none;
-    text-align center;
-    padding 20px 0 0;
+    display: none;
+    text-align: center;
+    padding: 20px 0 0;
   }
-  .thankyou-panel.active { display block; }
+  .thankyou-panel.active { display: block; }
   .thankyou-icon {
-    width 56px;
-    height 56px;
-    border-radius 50%;
-    background #edf5f0;
-    display flex;
-    align-items center;
-    justify-content center;
-    margin 0 auto 24px;
-    font-size 1.6rem;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #edf5f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    font-size: 1.6rem;
   }
   .thankyou-panel h2 {
-    font-family 'Fraunces', serif;
-    font-size 1.8rem;
-    font-weight 400;
-    color var(--navy, #1a2744);
-    margin 0 0 14px;
+    font-family: 'Fraunces', serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: var(--navy, #1a2744);
+    margin: 0 0 14px;
   }
   .thankyou-panel p {
-    font-family 'IBM Plex Sans', sans-serif;
-    font-size 0.95rem;
-    color #6b6660;
-    line-height 1.65;
-    max-width 440px;
-    margin 0 auto 28px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.95rem;
+    color: #6b6660;
+    line-height: 1.65;
+    max-width: 440px;
+    margin: 0 auto 28px;
   }
 
-   ── Reassurance strip ── 
+  /* ── Reassurance strip ── */
   .intake-trust {
-    max-width 640px;
-    margin 24px auto 0;
-    display flex;
-    justify-content center;
-    gap 32px;
-    flex-wrap wrap;
+    max-width: 640px;
+    margin: 24px auto 0;
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
   }
   .trust-item {
-    display flex;
-    align-items center;
-    gap 7px;
-    font-family 'IBM Plex Sans', sans-serif;
-    font-size 0.8rem;
-    color #8a8378;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.8rem;
+    color: #8a8378;
   }
   .trust-item svg {
-    flex-shrink 0;
-    color var(--gold, #c9a84c);
+    flex-shrink: 0;
+    color: var(--gold, #c9a84c);
   }
 
-  @media (max-width 680px) {
-    .intake-card { padding 32px 22px; margin 0 16px; }
-    .option-grid { grid-template-columns 1fr; }
-    .step-nav { flex-direction column-reverse; align-items stretch; }
-    .btn-back { justify-content center; }
-    .btn-next { justify-content center; }
-    .btn-back.hidden { display none; }
+  @media (max-width: 680px) {
+    .intake-card { padding: 32px 22px; margin: 0 16px; }
+    .option-grid { grid-template-columns: 1fr; }
+    .step-nav { flex-direction: column-reverse; align-items: stretch; }
+    .btn-back { justify-content: center; }
+    .btn-next { justify-content: center; }
+    .btn-back.hidden { display: none; }
   }
-style
-head
-body
+</style>
+</head>
+<body>
 
-!-- Nav injected by main.js --
-div id=nav-placeholderdiv
+<!-- Nav injected by main.js -->
+<div id="nav-placeholder"></div>
 
-!-- Hero --
-section class=intake-hero
-  div class=container
-    span class=eyebrowGetting startedspan
-    h1Tell us about your businessh1
-    pThree short questions so we understand your workplace before we speak. No pricing until you're ready.p
-  div
-section
+<!-- Hero -->
+<section class="intake-hero">
+  <div class="container">
+    <span class="eyebrow">Getting started</span>
+    <h1>Tell us about your business</h1>
+    <p>Three short questions so we understand your workplace before we speak. No pricing until you're ready.</p>
+  </div>
+</section>
 
-!-- Progress bar --
-div class=intake-progress id=intake-progress
-  div class=progress-steps
-    div class=progress-step active id=ps-1
-      div class=step-dot1div
-      span class=step-labelYour teamspan
-    div
-    div class=progress-step id=ps-2
-      div class=step-dot2div
-      span class=step-labelSectorspan
-    div
-    div class=progress-step id=ps-3
-      div class=step-dot3div
-      span class=step-labelRequirementsspan
-    div
-    div class=progress-step id=ps-4
-      div class=step-dot4div
-      span class=step-labelContactspan
-    div
-  div
-div
+<!-- Progress bar -->
+<div class="intake-progress" id="intake-progress">
+  <div class="progress-steps">
+    <div class="progress-step active" id="ps-1">
+      <div class="step-dot">1</div>
+      <span class="step-label">Your team</span>
+    </div>
+    <div class="progress-step" id="ps-2">
+      <div class="step-dot">2</div>
+      <span class="step-label">Sector</span>
+    </div>
+    <div class="progress-step" id="ps-3">
+      <div class="step-dot">3</div>
+      <span class="step-label">Requirements</span>
+    </div>
+    <div class="progress-step" id="ps-4">
+      <div class="step-dot">4</div>
+      <span class="step-label">Contact</span>
+    </div>
+  </div>
+</div>
 
-!-- Form body --
-div class=intake-body
-  div class=intake-card
+<!-- Form body -->
+<div class="intake-body">
+  <div class="intake-card">
 
-    !-- ── STEP 1 Headcount ── --
-    div class=intake-step active id=step-1
-      h2 class=step-headingHow many people work at your siteh2
-      p class=step-subInclude full-time, part-time, and regular contractors who work on your premises.p
+    <!-- ── STEP 1: Headcount ── -->
+    <div class="intake-step active" id="step-1">
+      <h2 class="step-heading">How many people work at your site?</h2>
+      <p class="step-sub">Include full-time, part-time, and regular contractors who work on your premises.</p>
 
-      div class=option-grid single-col
-        div class=option-card
-          input type=radio name=headcount id=hc-1 value=1–9 employees
-          label for=hc-1span class=option-icon👤span 1 – 9 employeeslabel
-        div
-        div class=option-card
-          input type=radio name=headcount id=hc-2 value=10–29 employees
-          label for=hc-2span class=option-icon👥span 10 – 29 employeeslabel
-        div
-        div class=option-card
-          input type=radio name=headcount id=hc-3 value=30–79 employees
-          label for=hc-3span class=option-icon🏢span 30 – 79 employeeslabel
-        div
-        div class=option-card
-          input type=radio name=headcount id=hc-4 value=80–150 employees
-          label for=hc-4span class=option-icon🏭span 80 – 150 employeeslabel
-        div
-        div class=option-card
-          input type=radio name=headcount id=hc-5 value=150+ employees
-          label for=hc-5span class=option-icon🏗️span 150+ employeeslabel
-        div
-      div
-      p class=error-msg id=err-1Please select a headcount range to continue.p
+      <div class="option-grid single-col">
+        <div class="option-card">
+          <input type="radio" name="headcount" id="hc-1" value="1–9 employees">
+          <label for="hc-1"><span class="option-icon">👤</span> 1 – 9 employees</label>
+        </div>
+        <div class="option-card">
+          <input type="radio" name="headcount" id="hc-2" value="10–29 employees">
+          <label for="hc-2"><span class="option-icon">👥</span> 10 – 29 employees</label>
+        </div>
+        <div class="option-card">
+          <input type="radio" name="headcount" id="hc-3" value="30–79 employees">
+          <label for="hc-3"><span class="option-icon">🏢</span> 30 – 79 employees</label>
+        </div>
+        <div class="option-card">
+          <input type="radio" name="headcount" id="hc-4" value="80–150 employees">
+          <label for="hc-4"><span class="option-icon">🏭</span> 80 – 150 employees</label>
+        </div>
+        <div class="option-card">
+          <input type="radio" name="headcount" id="hc-5" value="150+ employees">
+          <label for="hc-5"><span class="option-icon">🏗️</span> 150+ employees</label>
+        </div>
+      </div>
+      <p class="error-msg" id="err-1">Please select a headcount range to continue.</p>
 
-      div class=step-nav
-        button class=btn-back hidden← Backbutton
-        button class=btn-next id=next-1Next — Your sector →button
-      div
-    div
+      <div class="step-nav">
+        <button class="btn-back hidden">← Back</button>
+        <button class="btn-next" id="next-1">Next — Your sector →</button>
+      </div>
+    </div>
 
-    !-- ── STEP 2 Sector ── --
-    div class=intake-step id=step-2
-      h2 class=step-headingWhat sector does your business operate inh2
-      p class=step-subSelect all that apply. Different sectors carry different MOM obligations and hazard profiles.p
+    <!-- ── STEP 2: Sector ── -->
+    <div class="intake-step" id="step-2">
+      <h2 class="step-heading">What sector does your business operate in?</h2>
+      <p class="step-sub">Select all that apply. Different sectors carry different MOM obligations and hazard profiles.</p>
 
-      div class=option-grid
-        div class=option-card
-          input type=checkbox name=sector id=sec-fnb value=F&B  Restaurant  Catering
-          label for=sec-fnbspan class=option-icon🍽️span F&B  Restaurant  Cateringlabel
-        div
-        div class=option-card
-          input type=checkbox name=sector id=sec-wh value=Warehouse  Logistics
-          label for=sec-whspan class=option-icon📦span Warehouse  Logisticslabel
-        div
-        div class=option-card
-          input type=checkbox name=sector id=sec-ws value=Workshop  Fabrication
-          label for=sec-wsspan class=option-icon🔧span Workshop  Fabricationlabel
-        div
-        div class=option-card
-          input type=checkbox name=sector id=sec-mar value=Marine  Shipyard  Port
-          label for=sec-marspan class=option-icon⚓span Marine  Shipyard  Portlabel
-        div
-        div class=option-card
-          input type=checkbox name=sector id=sec-ret value=Retail  Showroom
-          label for=sec-retspan class=option-icon🏪span Retail  Showroomlabel
-        div
-        div class=option-card
-          input type=checkbox name=sector id=sec-const value=Construction  Civil
-          label for=sec-constspan class=option-icon🏗️span Construction  Civillabel
-        div
-        div class=option-card
-          input type=checkbox name=sector id=sec-mfg value=Light Manufacturing
-          label for=sec-mfgspan class=option-icon⚙️span Light Manufacturinglabel
-        div
-        div class=option-card
-          input type=checkbox name=sector id=sec-other value=Other
-          label for=sec-otherspan class=option-icon➕span Otherlabel
-        div
-      div
-      p class=error-msg id=err-2Please select at least one sector.p
+      <div class="option-grid">
+        <div class="option-card">
+          <input type="checkbox" name="sector" id="sec-fnb" value="F&B / Restaurant / Catering">
+          <label for="sec-fnb"><span class="option-icon">🍽️</span> F&B / Restaurant / Catering</label>
+        </div>
+        <div class="option-card">
+          <input type="checkbox" name="sector" id="sec-wh" value="Warehouse / Logistics">
+          <label for="sec-wh"><span class="option-icon">📦</span> Warehouse / Logistics</label>
+        </div>
+        <div class="option-card">
+          <input type="checkbox" name="sector" id="sec-ws" value="Workshop / Fabrication">
+          <label for="sec-ws"><span class="option-icon">🔧</span> Workshop / Fabrication</label>
+        </div>
+        <div class="option-card">
+          <input type="checkbox" name="sector" id="sec-mar" value="Marine / Shipyard / Port">
+          <label for="sec-mar"><span class="option-icon">⚓</span> Marine / Shipyard / Port</label>
+        </div>
+        <div class="option-card">
+          <input type="checkbox" name="sector" id="sec-ret" value="Retail / Showroom">
+          <label for="sec-ret"><span class="option-icon">🏪</span> Retail / Showroom</label>
+        </div>
+        <div class="option-card">
+          <input type="checkbox" name="sector" id="sec-const" value="Construction / Civil">
+          <label for="sec-const"><span class="option-icon">🏗️</span> Construction / Civil</label>
+        </div>
+        <div class="option-card">
+          <input type="checkbox" name="sector" id="sec-mfg" value="Light Manufacturing">
+          <label for="sec-mfg"><span class="option-icon">⚙️</span> Light Manufacturing</label>
+        </div>
+        <div class="option-card">
+          <input type="checkbox" name="sector" id="sec-other" value="Other">
+          <label for="sec-other"><span class="option-icon">➕</span> Other</label>
+        </div>
+      </div>
+      <p class="error-msg" id="err-2">Please select at least one sector.</p>
 
-      div class=step-nav
-        button class=btn-back id=back-2← Backbutton
-        button class=btn-next id=next-2Next — Requirements →button
-      div
-    div
+      <div class="step-nav">
+        <button class="btn-back" id="back-2">← Back</button>
+        <button class="btn-next" id="next-2">Next — Requirements →</button>
+      </div>
+    </div>
 
-    !-- ── STEP 3 Regulatory requirements ── --
-    div class=intake-step id=step-3
-      h2 class=step-headingWhat regulatory requirements are on your radarh2
-      p class=step-subTick everything that's relevant — even if you're not sure how to address it yet.p
+    <!-- ── STEP 3: Regulatory requirements ── -->
+    <div class="intake-step" id="step-3">
+      <h2 class="step-heading">What regulatory requirements are on your radar?</h2>
+      <p class="step-sub">Tick everything that's relevant — even if you're not sure how to address it yet.</p>
 
-      div class=option-grid single-col
-        div class=option-card
-          input type=checkbox name=reqs id=req-bizsafe value=BizSAFE certification (Level 1–5)
-          label for=req-bizsafespan class=option-icon🛡️span BizSAFE certification (Level 1–5)label
-        div
-        div class=option-card
-          input type=checkbox name=reqs id=req-ra value=Risk Assessment (RA) preparation or review
-          label for=req-raspan class=option-icon📋span Risk Assessment (RA) preparation or reviewlabel
-        div
-        div class=option-card
-          input type=checkbox name=reqs id=req-wsho value=Named WSHO on record (MOM requirement)
-          label for=req-wshospan class=option-icon📝span Named WSHO on record (MOM requirement)label
-        div
-        div class=option-card
-          input type=checkbox name=reqs id=req-notice value=Responding to a MOM improvement or prohibition notice
-          label for=req-noticespan class=option-icon⚠️span Responding to a MOM notice or stop-work orderlabel
-        div
-        div class=option-card
-          input type=checkbox name=reqs id=req-pdpa value=PDPA  Data Protection Officer (DPO) obligations
-          label for=req-pdpaspan class=option-icon🔒span PDPA  Data Protection Officer (DPO) obligationslabel
-        div
-        div class=option-card
-          input type=checkbox name=reqs id=req-incid value=Incident investigation and reporting
-          label for=req-incidspan class=option-icon🔍span Incident investigation and reportinglabel
-        div
-        div class=option-card
-          input type=checkbox name=reqs id=req-training value=WSH training and toolbox talks for workers
-          label for=req-trainingspan class=option-icon👷span WSH training and toolbox talks for workerslabel
-        div
-        div class=option-card
-          input type=checkbox name=reqs id=req-unsure value=Not sure — need a general WSH health check
-          label for=req-unsurespan class=option-icon💬span Not sure — I just need a general WSH health checklabel
-        div
-      div
+      <div class="option-grid single-col">
+        <div class="option-card">
+          <input type="checkbox" name="reqs" id="req-bizsafe" value="BizSAFE certification (Level 1–5)">
+          <label for="req-bizsafe"><span class="option-icon">🛡️</span> BizSAFE certification (Level 1–5)</label>
+        </div>
+        <div class="option-card">
+          <input type="checkbox" name="reqs" id="req-ra" value="Risk Assessment (RA) preparation or review">
+          <label for="req-ra"><span class="option-icon">📋</span> Risk Assessment (RA) preparation or review</label>
+        </div>
+        <div class="option-card">
+          <input type="checkbox" name="reqs" id="req-wsho" value="Named WSHO on record (MOM requirement)">
+          <label for="req-wsho"><span class="option-icon">📝</span> Named WSHO on record (MOM requirement)</label>
+        </div>
+        <div class="option-card">
+          <input type="checkbox" name="reqs" id="req-notice" value="Responding to a MOM improvement or prohibition notice">
+          <label for="req-notice"><span class="option-icon">⚠️</span> Responding to a MOM notice or stop-work order</label>
+        </div>
+        <div class="option-card">
+          <input type="checkbox" name="reqs" id="req-pdpa" value="PDPA / Data Protection Officer (DPO) obligations">
+          <label for="req-pdpa"><span class="option-icon">🔒</span> PDPA / Data Protection Officer (DPO) obligations</label>
+        </div>
+        <div class="option-card">
+          <input type="checkbox" name="reqs" id="req-incid" value="Incident investigation and reporting">
+          <label for="req-incid"><span class="option-icon">🔍</span> Incident investigation and reporting</label>
+        </div>
+        <div class="option-card">
+          <input type="checkbox" name="reqs" id="req-training" value="WSH training and toolbox talks for workers">
+          <label for="req-training"><span class="option-icon">👷</span> WSH training and toolbox talks for workers</label>
+        </div>
+        <div class="option-card">
+          <input type="checkbox" name="reqs" id="req-unsure" value="Not sure — need a general WSH health check">
+          <label for="req-unsure"><span class="option-icon">💬</span> Not sure — I just need a general WSH health check</label>
+        </div>
+      </div>
 
-      div class=field-group style=margin-top8px;
-        label class=field-label for=reqs-otherAnything else we should knowlabel
-        textarea class=field-textarea id=reqs-other name=reqs_other placeholder=e.g. we had an incident last month, we're expanding to a second site, a tender requires BizSAFE Level 3…textarea
-      div
-      p class=error-msg id=err-3Please tick at least one requirement, or describe your situation below.p
+      <div class="field-group" style="margin-top:8px;">
+        <label class="field-label" for="reqs-other">Anything else we should know?</label>
+        <textarea class="field-textarea" id="reqs-other" name="reqs_other" placeholder="e.g. we had an incident last month, we're expanding to a second site, a tender requires BizSAFE Level 3…"></textarea>
+      </div>
+      <p class="error-msg" id="err-3">Please tick at least one requirement, or describe your situation below.</p>
 
-      div class=step-nav
-        button class=btn-back id=back-3← Backbutton
-        button class=btn-next id=next-3Next — Your contact details →button
-      div
-    div
+      <div class="step-nav">
+        <button class="btn-back" id="back-3">← Back</button>
+        <button class="btn-next" id="next-3">Next — Your contact details →</button>
+      </div>
+    </div>
 
-    !-- ── STEP 4 Contact ── --
-    div class=intake-step id=step-4
-      h2 class=step-headingWhere should we reach youh2
-      p class=step-subWe'll review your answers before we call — so the conversation starts from the right place, not from scratch.p
+    <!-- ── STEP 4: Contact ── -->
+    <div class="intake-step" id="step-4">
+      <h2 class="step-heading">Where should we reach you?</h2>
+      <p class="step-sub">We'll review your answers before we call — so the conversation starts from the right place, not from scratch.</p>
 
-      div class=field-group
-        label class=field-label for=contact-nameYour namelabel
-        input type=text class=field-input id=contact-name name=name placeholder=e.g. Ahmad Fauzi autocomplete=name
-      div
-      div class=field-group
-        label class=field-label for=contact-companyCompany namelabel
-        input type=text class=field-input id=contact-company name=company placeholder=e.g. Sunrise Kitchen Pte Ltd
-      div
-      div class=field-group
-        label class=field-label for=contact-phoneMobile  WhatsApp numberlabel
-        input type=tel class=field-input id=contact-phone name=phone placeholder=+65 9XXX XXXX autocomplete=tel
-        p class=field-hintWe'll WhatsApp to arrange a time — no cold calls.p
-      div
-      div class=field-group
-        label class=field-label for=contact-emailEmail addresslabel
-        input type=email class=field-input id=contact-email name=email placeholder=you@company.com autocomplete=email
-      div
+      <div class="field-group">
+        <label class="field-label" for="contact-name">Your name</label>
+        <input type="text" class="field-input" id="contact-name" name="name" placeholder="e.g. Ahmad Fauzi" autocomplete="name">
+      </div>
+      <div class="field-group">
+        <label class="field-label" for="contact-company">Company name</label>
+        <input type="text" class="field-input" id="contact-company" name="company" placeholder="e.g. Sunrise Kitchen Pte Ltd">
+      </div>
+      <div class="field-group">
+        <label class="field-label" for="contact-phone">Mobile / WhatsApp number</label>
+        <input type="tel" class="field-input" id="contact-phone" name="phone" placeholder="+65 9XXX XXXX" autocomplete="tel">
+        <p class="field-hint">We'll WhatsApp to arrange a time — no cold calls.</p>
+      </div>
+      <div class="field-group">
+        <label class="field-label" for="contact-email">Email address</label>
+        <input type="email" class="field-input" id="contact-email" name="email" placeholder="you@company.com" autocomplete="email">
+      </div>
 
-      p class=error-msg id=err-4Please fill in your name and at least one contact method (phone or email).p
+      <p class="error-msg" id="err-4">Please fill in your name and at least one contact method (phone or email).</p>
 
-      div class=step-nav
-        button class=btn-back id=back-4← Backbutton
-        button class=btn-next id=next-4 type=submitSubmit your requirements →button
-      div
-    div
+      <div class="step-nav">
+        <button class="btn-back" id="back-4">← Back</button>
+        <button class="btn-next" id="next-4" type="submit">Submit your requirements →</button>
+      </div>
+    </div>
 
-    !-- ── Thank-you ── --
-    div class=thankyou-panel id=thankyou
-      div class=thankyou-icon✓div
-      h2We've got your details.h2
-      pWe'll review what you've shared and reach out within strong2 business hoursstrong to arrange a short conversation — no sales pitch, just a proper look at your situation.p
-      a href=index.html class=btn btn-primary style=displayinline-block;← Back to homea
-    div
+    <!-- ── Thank-you ── -->
+    <div class="thankyou-panel" id="thankyou">
+      <div class="thankyou-icon">✓</div>
+      <h2>We've got your details.</h2>
+      <p>We'll review what you've shared and reach out within <strong>2 business hours</strong> to arrange a short conversation — no sales pitch, just a proper look at your situation.</p>
+      <a href="index.html" class="btn btn-primary" style="display:inline-block;">← Back to home</a>
+    </div>
 
-  div!-- intake-card --
+  </div><!-- /intake-card -->
 
-  !-- Trust strip --
-  div class=intake-trust
-    div class=trust-item
-      svg width=14 height=14 fill=none stroke=currentColor stroke-width=2 viewBox=0 0 24 24path d=M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10zsvg
+  <!-- Trust strip -->
+  <div class="intake-trust">
+    <div class="trust-item">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
       MOM-Registered WSHO
-    div
-    div class=trust-item
-      svg width=14 height=14 fill=none stroke=currentColor stroke-width=2 viewBox=0 0 24 24circle cx=12 cy=12 r=10path d=M12 6v6l4 2svg
+    </div>
+    <div class="trust-item">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
       Reply within 2 business hours
-    div
-    div class=trust-item
-      svg width=14 height=14 fill=none stroke=currentColor stroke-width=2 viewBox=0 0 24 24path d=M20 12V22H4V12path d=M22 7H2v5h20V7zpath d=M12 22V7path d=M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7zpath d=M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7zsvg
+    </div>
+    <div class="trust-item">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 12V22H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg>
       No pricing until you're ready
-    div
-  div
+    </div>
+  </div>
 
-div!-- intake-body --
+</div><!-- /intake-body -->
 
-!-- Footer injected by main.js --
-div id=footer-placeholderdiv
+<!-- Footer injected by main.js -->
+<div id="footer-placeholder"></div>
 
-!-- Hidden Formspree submission target --
-form id=intake-formspree action=httpsformspree.iofxqewdlaj method=POST style=displaynone;
-  input type=text name=name id=fs-name
-  input type=text name=company id=fs-company
-  input type=tel name=phone id=fs-phone
-  input type=email name=email id=fs-email
-  input type=text name=headcount id=fs-headcount
-  input type=text name=sectors id=fs-sectors
-  input type=text name=requirements id=fs-requirements
-  textarea name=additional_notes id=fs-notestextarea
-  input type=hidden name=_subject value=New OSS Intake — Requirements Submitted
-  input type=hidden name=_next value=
-form
+<!-- Hidden Formspree submission target -->
+<form id="intake-formspree" action="https://formspree.io/f/xqewdlaj" method="POST" style="display:none;">
+  <input type="text" name="name" id="fs-name">
+  <input type="text" name="company" id="fs-company">
+  <input type="tel" name="phone" id="fs-phone">
+  <input type="email" name="email" id="fs-email">
+  <input type="text" name="headcount" id="fs-headcount">
+  <input type="text" name="sectors" id="fs-sectors">
+  <input type="text" name="requirements" id="fs-requirements">
+  <textarea name="additional_notes" id="fs-notes"></textarea>
+  <input type="hidden" name="_subject" value="New OSS Intake — Requirements Submitted">
+  <input type="hidden" name="_next" value="">
+</form>
 
-script src=main.jsscript
-script
+<script src="main.js"></script>
+<script>
 (function(){
-  var state = { headcount'', sectors[], reqs[], notes'' };
+  var state = { headcount:'', sectors:[], reqs:[], notes:'' };
   var currentStep = 1;
   var totalSteps = 4;
 
   function setStep(n) {
-     Update step panels
+    // Update step panels
     document.querySelectorAll('.intake-step').forEach(function(el){ el.classList.remove('active'); });
     var panel = document.getElementById('step-'+n);
     if (panel) panel.classList.add('active');
 
-     Update progress indicators
-    for (var i=1; i=totalSteps; i++) {
+    // Update progress indicators
+    for (var i=1; i<=totalSteps; i++) {
       var ps = document.getElementById('ps-'+i);
       if (!ps) continue;
       ps.classList.remove('active','done');
-      if (i  n) ps.classList.add('done');
+      if (i < n) ps.classList.add('done');
       else if (i === n) ps.classList.add('active');
     }
     currentStep = n;
-    window.scrollTo({ top document.querySelector('.intake-progress').offsetTop - 80, behavior'smooth' });
+    window.scrollTo({ top: document.querySelector('.intake-progress').offsetTop - 80, behavior:'smooth' });
   }
 
-   Step 1 → 2
+  // Step 1 → 2
   document.getElementById('next-1').addEventListener('click', function(){
-    var selected = document.querySelector('input[name=headcount]checked');
+    var selected = document.querySelector('input[name="headcount"]:checked');
     document.getElementById('err-1').classList.remove('visible');
     if (!selected) { document.getElementById('err-1').classList.add('visible'); return; }
     state.headcount = selected.value;
     setStep(2);
   });
 
-   Step 2 → 3
+  // Step 2 → 3
   document.getElementById('back-2').addEventListener('click', function(){ setStep(1); });
   document.getElementById('next-2').addEventListener('click', function(){
-    var checked = document.querySelectorAll('input[name=sector]checked');
+    var checked = document.querySelectorAll('input[name="sector"]:checked');
     document.getElementById('err-2').classList.remove('visible');
     if (checked.length === 0) { document.getElementById('err-2').classList.add('visible'); return; }
     state.sectors = Array.from(checked).map(function(c){ return c.value; });
     setStep(3);
   });
 
-   Step 3 → 4
+  // Step 3 → 4
   document.getElementById('back-3').addEventListener('click', function(){ setStep(2); });
   document.getElementById('next-3').addEventListener('click', function(){
-    var checked = document.querySelectorAll('input[name=reqs]checked');
+    var checked = document.querySelectorAll('input[name="reqs"]:checked');
     var notes = document.getElementById('reqs-other').value.trim();
     document.getElementById('err-3').classList.remove('visible');
     if (checked.length === 0 && !notes) { document.getElementById('err-3').classList.add('visible'); return; }
@@ -723,16 +723,16 @@ script
     setStep(4);
   });
 
-   Step 4 → submit
+  // Step 4 → submit
   document.getElementById('back-4').addEventListener('click', function(){ setStep(3); });
   document.getElementById('next-4').addEventListener('click', function(){
     var name = document.getElementById('contact-name').value.trim();
     var phone = document.getElementById('contact-phone').value.trim();
     var email = document.getElementById('contact-email').value.trim();
     document.getElementById('err-4').classList.remove('visible');
-    if (!name  (!phone && !email)) { document.getElementById('err-4').classList.add('visible'); return; }
+    if (!name || (!phone && !email)) { document.getElementById('err-4').classList.add('visible'); return; }
 
-     Populate hidden Formspree form
+    // Populate hidden Formspree form
     document.getElementById('fs-name').value = name;
     document.getElementById('fs-company').value = document.getElementById('contact-company').value.trim();
     document.getElementById('fs-phone').value = phone;
@@ -742,20 +742,20 @@ script
     document.getElementById('fs-requirements').value = state.reqs.join(', ');
     document.getElementById('fs-notes').value = state.notes;
 
-     Submit via fetch
+    // Submit via fetch
     var form = document.getElementById('intake-formspree');
     var data = new FormData(form);
-    fetch(form.action, { method'POST', bodydata, headers{ 'Accept''applicationjson' } })
+    fetch(form.action, { method:'POST', body:data, headers:{ 'Accept':'application/json' } })
       .then(function(r){ return r.json(); })
       .catch(function(){ return {}; })
       .finally(function(){
-         Show thank-you regardless of network (form data is captured)
+        // Show thank-you regardless of network (form data is captured)
         document.getElementById('step-4').classList.remove('active');
         document.getElementById('intake-progress').style.display = 'none';
         document.getElementById('thankyou').classList.add('active');
       });
   });
 })();
-script
-body
-html
+</script>
+</body>
+</html>
