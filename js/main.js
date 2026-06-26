@@ -123,6 +123,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
                 <div><div class="ddi-label">Warehouse &amp; Logistics</div><div class="ddi-sub">Storage &amp; distribution</div></div>
               </a>
+              <a href="/industry-marine.html" class="oss-dropdown-item" role="menuitem">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 20h20M4 20V10l8-6 8 6v10"/><path d="M12 20v-6"/><path d="M8 20v-4h8v4"/></svg>
+                <div><div class="ddi-label">Marine &amp; Vessels</div><div class="ddi-sub">Offshore &amp; vessel ops</div></div>
+              </a>
             </div>
           </div>
         </div>
@@ -190,6 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <a href="/industry-fnb.html" class="mob-link">F&amp;B</a>
         <a href="/industry-workshop.html" class="mob-link">Workshop &amp; Fabrication</a>
         <a href="/industry-warehouse.html" class="mob-link">Warehouse &amp; Logistics</a>
+        <a href="/industry-marine.html" class="mob-link">Marine &amp; Vessels</a>
       </div>
       <div class="mob-section">
         <div class="mob-heading">Resources</div>
