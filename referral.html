@@ -632,7 +632,7 @@
         <h2>Make a referral</h2>
         <p>Fill this in and we&rsquo;ll take it from there. The business you refer won&rsquo;t feel any sales pressure &mdash; we start with a free consultation.</p>
 
-        <form id="referralForm" action="https://formspree.io/f/xqewdlaj" method="POST">
+        <form id="referralForm" action="https://formspree.io/f/mgojyqll" method="POST">
           <input type="hidden" name="_subject" value="New Referral Submission via OSS Website">
 
           <span class="form-section-label">Your details</span>
@@ -828,7 +828,7 @@ document.getElementById('referralForm').addEventListener('submit', async functio
   error.style.display   = 'none';
 
   try {
-    const resp = await fetch('https://formspree.io/f/xqewdlaj', {
+    const resp = await fetch('https://formspree.io/f/mgojyqll', {
       method: 'POST',
       headers: { 'Accept': 'application/json' },
       body: new FormData(this)
