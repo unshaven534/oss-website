@@ -38,31 +38,102 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ---- TOP BAR + MAIN NAV ---- */
   const navHTML = `
   <div id="oss-topbar" class="oss-topbar">
-    <div class="oss-topbar-inner">
-      <div class="topbar-left">
-        <a href="tel:+6589534583" class="topbar-item">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.11 1.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-          +65 8953 4583
-        </a>
-        <span class="topbar-divider"></span>
-        <a href="mailto:admin@overwatch.com.sg" class="topbar-item">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          admin@overwatch.com.sg
-        </a>
-        <span class="topbar-divider topbar-divider-hide"></span>
-        <span class="topbar-item topbar-divider-hide">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          Singapore
-        </span>
-      </div>
-      <div class="topbar-right">
-        <a href="https://www.linkedin.com/company/overwatch-strategic-solutions" target="_blank" rel="noopener" class="topbar-social" aria-label="LinkedIn">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-        </a>
-        <a href="https://wa.me/6589534583" target="_blank" rel="noopener" class="topbar-social" aria-label="WhatsApp">
-          <svg width="13" height="13" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 0C7.163 0 0 7.163 0 16c0 2.822.733 5.473 2.018 7.774L.057 31.314a.75.75 0 00.918.918l7.51-1.957A15.938 15.938 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm7.27 20.126c-.397-.199-2.35-1.16-2.714-1.292-.363-.133-.628-.199-.892.199s-1.026 1.292-1.257 1.557c-.232.264-.464.298-.861.1-.397-.2-1.676-.618-3.193-1.97-1.18-1.052-1.977-2.35-2.208-2.748-.232-.397-.025-.612.174-.81.178-.178.397-.464.596-.695.198-.232.264-.397.397-.662.132-.264.066-.497-.033-.695-.1-.2-.892-2.152-1.224-2.946-.322-.773-.65-.668-.892-.68-.231-.012-.496-.015-.761-.015-.264 0-.695.1-1.059.497-.363.397-1.39 1.358-1.39 3.312s1.423 3.843 1.622 4.108c.198.264 2.8 4.277 6.782 5.997.948.41 1.687.654 2.264.837.951.303 1.816.26 2.5.157.763-.114 2.35-.96 2.682-1.888.331-.928.331-1.723.232-1.888-.1-.165-.363-.265-.76-.464z"/></svg>
-        </a>
-      </div>
+    <style>
+      .oss-topbar { overflow: hidden; background: var(--navy-900, #1B3A6B); height: 36px; display: flex; align-items: center; }
+      .ticker-track { display: flex; align-items: center; white-space: nowrap; animation: ticker-scroll 40s linear infinite; will-change: transform; }
+      .ticker-track:hover { animation-play-state: paused; }
+      @keyframes ticker-scroll {
+        0%   { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+      .ticker-item { display: inline-flex; align-items: center; gap: 6px; font-size: 0.72rem; font-family: var(--font-mono, monospace); color: rgba(255,255,255,0.85); padding: 0 28px; text-decoration: none; transition: color 0.2s; }
+      .ticker-item:hover { color: #ffffff; }
+      .ticker-item svg { flex-shrink: 0; opacity: 0.7; }
+      .ticker-dot { display: inline-block; width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.3); margin: 0 4px; vertical-align: middle; }
+    </style>
+    <div class="ticker-track" id="ossTicker">
+      <!-- Set 1 -->
+      <a href="tel:+6589534583" class="ticker-item">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.11 1.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        +65 8953 4583
+      </a><span class="ticker-dot"></span>
+      <a href="tel:+6589590536" class="ticker-item">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.11 1.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        +65 8959 0536
+      </a><span class="ticker-dot"></span>
+      <a href="mailto:admin@overwatch.com.sg" class="ticker-item">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        admin@overwatch.com.sg
+      </a><span class="ticker-dot"></span>
+      <span class="ticker-item">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Singapore
+      </span><span class="ticker-dot"></span>
+      <span class="ticker-item">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        MOM-Registered Safety Officers &amp; Min. 2 Years Experienced Safety Coordinators
+      </span><span class="ticker-dot"></span>
+      <span class="ticker-item">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        No full-time hire needed &mdash; from S$650/month
+      </span><span class="ticker-dot"></span>
+      <span class="ticker-item">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Cancel any month with 30 days&apos; notice
+      </span><span class="ticker-dot"></span>
+      <span class="ticker-item">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        Free initial consultation &mdash; no obligation
+      </span><span class="ticker-dot"></span>
+      <span class="ticker-item">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        Serving F&amp;B &middot; Marine &middot; Warehousing &middot; Manufacturing
+      </span><span class="ticker-dot"></span>
+      <span class="ticker-item">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Response within 1 business day
+      </span><span class="ticker-dot"></span>
+      <!-- Set 2 — duplicate for seamless loop -->
+      <a href="tel:+6589534583" class="ticker-item">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.11 1.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        +65 8953 4583
+      </a><span class="ticker-dot"></span>
+      <a href="tel:+6589590536" class="ticker-item">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.11 1.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        +65 8959 0536
+      </a><span class="ticker-dot"></span>
+      <a href="mailto:admin@overwatch.com.sg" class="ticker-item">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        admin@overwatch.com.sg
+      </a><span class="ticker-dot"></span>
+      <span class="ticker-item">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Singapore
+      </span><span class="ticker-dot"></span>
+      <span class="ticker-item">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        MOM-Registered Safety Officers &amp; Min. 2 Years Experienced Safety Coordinators
+      </span><span class="ticker-dot"></span>
+      <span class="ticker-item">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        No full-time hire needed &mdash; from S$650/month
+      </span><span class="ticker-dot"></span>
+      <span class="ticker-item">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Cancel any month with 30 days&apos; notice
+      </span><span class="ticker-dot"></span>
+      <span class="ticker-item">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        Free initial consultation &mdash; no obligation
+      </span><span class="ticker-dot"></span>
+      <span class="ticker-item">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        Serving F&amp;B &middot; Marine &middot; Warehousing &middot; Manufacturing
+      </span><span class="ticker-dot"></span>
+      <span class="ticker-item">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Response within 1 business day
+      </span><span class="ticker-dot"></span>
     </div>
   </div>
 
