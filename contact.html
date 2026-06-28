@@ -44,7 +44,7 @@
           <h3>Tell us about your business</h3>
           <p style="font-size:0.95rem; color:var(--gray-500); margin-bottom:28px; line-height:1.5;">We'll get back to you within 2 business hours to arrange your free consultation.</p>
 
-          <form id="contactForm" action="https://formspree.io/f/xqewdlaj" method="POST">
+          <form id="contactForm" action="https://formspree.io/f/mgojyqll" method="POST">
             <input type="hidden" name="_replyto" id="replyto">
             <input type="hidden" name="_subject" id="formsubject" value="New Enquiry via OSS Contact Form">
             <div class="form-row">
@@ -247,7 +247,7 @@ document.getElementById('contactForm').addEventListener('submit', async function
   errorBox.style.display = 'none';
 
   try {
-    const response = await fetch('https://formspree.io/f/xqewdlaj', {
+    const response = await fetch('https://formspree.io/f/mgojyqll', {
       method: 'POST',
       headers: { 'Accept': 'application/json' },
       body: new FormData(this)
