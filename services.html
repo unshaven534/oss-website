@@ -161,15 +161,35 @@
     color: #ffffff;
     font-size: 0.82rem;
     font-weight: 600;
-    padding: 11px 20px;
+    padding: 10px 18px;
     border-radius: 6px;
     text-decoration: none;
-    transition: background 0.2s;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
     align-self: flex-start;
+    border: 1.5px solid transparent;
+    white-space: nowrap;
+    height: 38px;
+    box-sizing: border-box;
   }
   .svc-card-cta:hover { background: #142d56; }
-  .svc-card-cta.orange { background: var(--orange-600, #C9611A); }
+  .svc-card-cta.orange { background: var(--orange-600, #C9611A); border-color: transparent; }
   .svc-card-cta.orange:hover { background: #A84E14; }
+  .svc-card-cta.outline {
+    background: #ffffff;
+    color: var(--navy-900, #1B3A6B);
+    border-color: var(--navy-900, #1B3A6B);
+  }
+  .svc-card-cta.outline:hover {
+    background: var(--navy-900, #1B3A6B);
+    color: #ffffff;
+  }
+  .svc-btn-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 0;
+  }
   .svc-wa-link {
     display: block;
     margin-top: 10px;
@@ -296,9 +316,9 @@
         </div>
         <h3>Risk Assessments</h3>
         <p>Site-specific RAs written for how your team actually works — not generic templates. MOM-ready, signed by a registered WSHO.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+        <div class="svc-btn-row">
         <a href="/intake.html" class="svc-card-cta orange">Get started &rarr;</a>
-        <button onclick="openDownloadModal('Sample Risk Assessment Template', '/assets/downloads/OSS_Sample_Risk_Assessment.pdf')" class="svc-card-cta" style="background:var(--navy-900,#1B3A6B);margin-left:8px;" type="button">
+        <button onclick="openDownloadModal('Sample Risk Assessment Template', '/assets/downloads/OSS_Sample_Risk_Assessment.pdf')" class="svc-card-cta outline" type="button">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download sample
       </button>
@@ -318,9 +338,9 @@
         </div>
         <h3>Safe Work Procedures</h3>
         <p>Step-by-step SWPs your team can follow on the floor. Available in English, Mandarin, or Malay. Printable and digital formats included.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+        <div class="svc-btn-row">
         <a href="/intake.html" class="svc-card-cta orange">Get started &rarr;</a>
-        <button onclick="openDownloadModal('Sample Safe Work Procedure Template', '/assets/downloads/OSS_Sample_Safe_Work_Procedure.pdf')" class="svc-card-cta" style="background:var(--navy-900,#1B3A6B);margin-left:8px;" type="button">
+        <button onclick="openDownloadModal('Sample Safe Work Procedure Template', '/assets/downloads/OSS_Sample_Safe_Work_Procedure.pdf')" class="svc-card-cta outline" type="button">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download sample
       </button>
@@ -355,9 +375,9 @@
         </div>
         <h3>Compliance Documentation</h3>
         <p>A single, organised compliance folder — digital and physical — kept current. If MOM walks in, you're ready in five minutes.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+        <div class="svc-btn-row">
         <a href="/intake.html" class="svc-card-cta orange">Get started &rarr;</a>
-        <button onclick="openDownloadModal('WSH Compliance Checklist', '/assets/downloads/OSS_WSH_Compliance_Checklist.pdf')" class="svc-card-cta" style="background:var(--navy-900,#1B3A6B);margin-left:8px;" type="button">
+        <button onclick="openDownloadModal('WSH Compliance Checklist', '/assets/downloads/OSS_WSH_Compliance_Checklist.pdf')" class="svc-card-cta outline" type="button">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download sample
       </button>
@@ -391,9 +411,9 @@
         </div>
         <h3>bizSAFE Application Support</h3>
         <p>End-to-end support from Level 1 through Level Star. We prepare your RMI package, coordinate the external audit, and manage the paperwork. You just show up.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+        <div class="svc-btn-row">
         <a href="/intake.html" class="svc-card-cta orange">Get started &rarr;</a>
-        <button onclick="openDownloadModal('bizSAFE Level 3 Readiness Checklist', '/assets/downloads/OSS_bizSAFE_Readiness_Checklist.pdf')" class="svc-card-cta" style="background:var(--navy-900,#1B3A6B);margin-left:8px;" type="button">
+        <button onclick="openDownloadModal('bizSAFE Level 3 Readiness Checklist', '/assets/downloads/OSS_bizSAFE_Readiness_Checklist.pdf')" class="svc-card-cta outline" type="button">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download sample
       </button>
@@ -428,9 +448,9 @@
         </div>
         <h3>Incident Investigation</h3>
         <p>WSHO-led investigation within 24 hours. MOM notification, scene documentation, root cause analysis, and corrective action plan — all handled for you.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+        <div class="svc-btn-row">
         <a href="/intake.html" class="svc-card-cta orange">Get started &rarr;</a>
-        <button onclick="openDownloadModal('Incident First 48 Hours Guide', '/assets/downloads/OSS_Incident_First_48_Hours_Guide.pdf')" class="svc-card-cta" style="background:var(--navy-900,#1B3A6B);margin-left:8px;" type="button">
+        <button onclick="openDownloadModal('Incident First 48 Hours Guide', '/assets/downloads/OSS_Incident_First_48_Hours_Guide.pdf')" class="svc-card-cta outline" type="button">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download sample
       </button>
@@ -492,9 +512,9 @@
         </div>
         <h3>PDPA Gap Assessment</h3>
         <p>A structured review of how your business collects, stores, and shares personal data — with a prioritised action plan to close the gaps before they become breaches.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+        <div class="svc-btn-row">
         <a href="/intake.html" class="svc-card-cta orange">Get a quote &rarr;</a>
-        <button onclick="openDownloadModal('PDPA Self-Assessment Checklist', '/assets/downloads/OSS_PDPA_Self_Assessment_Checklist.pdf')" class="svc-card-cta" style="background:var(--navy-900,#1B3A6B);margin-left:8px;" type="button">
+        <button onclick="openDownloadModal('PDPA Self-Assessment Checklist', '/assets/downloads/OSS_PDPA_Self_Assessment_Checklist.pdf')" class="svc-card-cta outline" type="button">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download sample
       </button>
@@ -512,9 +532,9 @@
         </div>
         <h3>Data Protection Policy &amp; Notices</h3>
         <p>PDPA-compliant policies, consent forms, and privacy notices drafted for your business — in plain English your team and customers can actually understand.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+        <div class="svc-btn-row">
         <a href="/intake.html" class="svc-card-cta orange">Get a quote &rarr;</a>
-        <button onclick="openDownloadModal('Sample Data Protection Policy', '/assets/downloads/OSS_Sample_Data_Protection_Policy.pdf')" class="svc-card-cta" style="background:var(--navy-900,#1B3A6B);margin-left:8px;" type="button">
+        <button onclick="openDownloadModal('Sample Data Protection Policy', '/assets/downloads/OSS_Sample_Data_Protection_Policy.pdf')" class="svc-card-cta outline" type="button">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download sample
       </button>
