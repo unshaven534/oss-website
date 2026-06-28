@@ -3,271 +3,503 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Services | Overwatch Strategic Solutions</title>
-<meta name="description" content="Every workplace safety service a Singapore SME needs &mdash; risk assessments, safe work procedures, monthly site inspections, fractional WSHO support, bizSAFE applications, training, and incident investigation &mdash; delivered as a monthly subscription.">
-<meta property="og:title" content="WSH Services for Singapore SMEs — Overwatch Strategic Solutions">
-<meta property="og:description" content="Risk assessments, safe work procedures, site inspections, fractional WSHO support and more — delivered as a monthly subscription.">
+<title>WSH Services | Overwatch Strategic Solutions</title>
+<meta name="description" content="WSH retainer services and DPO/PDPA compliance support for Singapore SMEs. MOM-registered WSHO, risk assessments, safe work procedures, incident investigation and more.">
+<meta name="keywords" content="WSH services Singapore, WSHO retainer, DPO PDPA Singapore, bizSAFE, risk assessment, safe work procedures, incident investigation">
+<meta property="og:title" content="WSH Services &mdash; Overwatch Strategic Solutions">
+<meta property="og:description" content="Outsourced safety and compliance services built for Singapore SMEs. Start with a free consultation.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://www.overwatch.com.sg/services.html">
-<meta property="og:image" content="https://www.overwatch.com.sg/assets/logo.jpg">
-<meta property="og:site_name" content="Overwatch Strategic Solutions">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="WSH Services for Singapore SMEs — Overwatch Strategic Solutions">
-<meta name="twitter:description" content="Risk assessments, safe work procedures, site inspections, fractional WSHO support and more — delivered as a monthly subscription.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
+<style>
+  /* ── Page hero ── */
+  .svc-hero {
+    background: var(--navy-900, #1B3A6B);
+    padding: 96px 0 72px;
+    text-align: center;
+  }
+  .svc-hero .eyebrow {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    color: var(--orange-400, #E8863A);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .svc-hero h1 {
+    font-family: var(--font-display, serif);
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0 0 20px;
+    line-height: 1.15;
+  }
+  .svc-hero p {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.72);
+    max-width: 560px;
+    margin: 0 auto 36px;
+    line-height: 1.7;
+  }
+  .svc-hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--orange-600, #C9611A);
+    color: #ffffff;
+    font-family: var(--font-sans, sans-serif);
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 14px 28px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .svc-hero-cta:hover { background: var(--orange-700, #A84E14); transform: translateY(-1px); }
+
+  /* ── Section divider ── */
+  .svc-section {
+    padding: 72px 0 56px;
+  }
+  .svc-section-alt { background: var(--gray-50, #F8F7F5); }
+  .svc-section-heading {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 12px;
+  }
+  .svc-section-heading .section-tag {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--orange-600, #C9611A);
+    background: rgba(201,97,26,0.08);
+    padding: 4px 10px;
+    border-radius: 100px;
+  }
+  .svc-section-title {
+    font-family: var(--font-display, serif);
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 600;
+    color: var(--navy-900, #1B3A6B);
+    margin: 0 0 10px;
+  }
+  .svc-section-sub {
+    font-size: 0.95rem;
+    color: var(--gray-600, #666);
+    margin: 0 0 48px;
+    max-width: 540px;
+    line-height: 1.65;
+  }
+
+  /* ── Service cards grid ── */
+  .svc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+  }
+  .svc-card {
+    background: #ffffff;
+    border: 1px solid var(--gray-200, #E5E3DF);
+    border-radius: 12px;
+    padding: 32px 28px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    transition: box-shadow 0.2s, transform 0.15s;
+  }
+  .svc-card:hover { box-shadow: 0 8px 32px rgba(27,58,107,0.10); transform: translateY(-2px); }
+  .svc-card-icon {
+    width: 42px; height: 42px;
+    background: rgba(27,58,107,0.07);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 18px;
+    color: var(--navy-900, #1B3A6B);
+  }
+  .svc-card-icon svg { width: 20px; height: 20px; }
+  .svc-tier-badges {
+    display: flex; gap: 6px; flex-wrap: wrap;
+    margin-bottom: 14px;
+  }
+  .tier-badge {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 100px;
+    border: 1px solid;
+  }
+  .tier-watch   { color: #2E75B6; border-color: #2E75B6; background: rgba(46,117,182,0.07); }
+  .tier-guard   { color: #0E6655; border-color: #0E6655; background: rgba(14,102,85,0.07); }
+  .tier-overwatch { color: var(--navy-900,#1B3A6B); border-color: var(--navy-900,#1B3A6B); background: rgba(27,58,107,0.07); }
+  .tier-addon   { color: #7D5A00; border-color: #B8860B; background: rgba(184,134,11,0.07); }
+  .svc-card h3 {
+    font-family: var(--font-display, serif);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--navy-900, #1B3A6B);
+    margin: 0 0 10px;
+    line-height: 1.3;
+  }
+  .svc-card p {
+    font-size: 0.88rem;
+    color: var(--gray-600, #555);
+    line-height: 1.65;
+    margin: 0 0 24px;
+    flex-grow: 1;
+  }
+  .svc-card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--navy-900, #1B3A6B);
+    color: #ffffff;
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 11px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.2s;
+    align-self: flex-start;
+  }
+  .svc-card-cta:hover { background: #142d56; }
+  .svc-card-cta.orange { background: var(--orange-600, #C9611A); }
+  .svc-card-cta.orange:hover { background: #A84E14; }
+  .svc-wa-link {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.78rem;
+    color: var(--gray-500, #888);
+    text-decoration: none;
+  }
+  .svc-wa-link:hover { color: var(--orange-600, #C9611A); }
+
+  /* ── Bottom CTA band ── */
+  .svc-cta-band {
+    background: var(--navy-900, #1B3A6B);
+    padding: 72px 0;
+    text-align: center;
+  }
+  .svc-cta-band h2 {
+    font-family: var(--font-display, serif);
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0 0 14px;
+  }
+  .svc-cta-band p {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.68);
+    margin: 0 0 32px;
+  }
+  .svc-cta-btn-row {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn-primary-light {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--orange-600, #C9611A); color: #fff;
+    font-weight: 600; font-size: 0.9rem;
+    padding: 14px 28px; border-radius: 6px;
+    text-decoration: none; transition: background 0.2s;
+  }
+  .btn-primary-light:hover { background: #A84E14; }
+  .btn-ghost-light {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: rgba(255,255,255,0.85);
+    border: 1px solid rgba(255,255,255,0.3);
+    font-weight: 500; font-size: 0.9rem;
+    padding: 14px 28px; border-radius: 6px;
+    text-decoration: none; transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-ghost-light:hover { border-color: #fff; color: #fff; }
+
+  /* ── DPO card full width variant ── */
+  .svc-card-wide {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: center;
+  }
+  .svc-card-wide .svc-card-body { display: flex; flex-direction: column; }
+  .svc-card-wide .svc-card-detail {
+    background: var(--gray-50, #F8F7F5);
+    border-radius: 8px;
+    padding: 24px;
+  }
+  .svc-card-detail ul {
+    list-style: none; padding: 0; margin: 0;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px 24px;
+  }
+  .svc-card-detail ul li {
+    font-size: 0.84rem; color: var(--gray-700, #444);
+    display: flex; align-items: flex-start; gap: 8px; line-height: 1.5;
+  }
+  .svc-card-detail ul li::before {
+    content: "\2713";
+    color: var(--orange-600, #C9611A);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  @media (max-width: 700px) {
+    .svc-card-wide { grid-template-columns: 1fr; }
+    .svc-card-detail ul { grid-template-columns: 1fr; }
+  }
+</style>
 </head>
 <body>
 
-<nav class="nav">
-  <div class="nav-inner">
-    <a href="index.html" class="logo"><img src="assets/logo.jpg" alt="Overwatch Strategic Solutions"></a>
-    <ul class="nav-links">
-      <li><a href="https://www.overwatch.com.sg">Home</a></li>
-      <li><a href="services.html">Services</a></li>
-      <li><a href="packages.html">Packages</a></li>
-      <li><a href="why-oss.html">Why OSS</a></li>
-      <li class="nav-dropdown"><button class="nav-dropdown-btn">Trades <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 4l4 4 4-4"/></svg></button><ul class="nav-dropdown-menu"><li><a href="industry-fnb.html">F&amp;B</a></li><li><a href="industry-workshop.html">Workshops</a></li><li><a href="industry-warehouse.html">Warehouses</a></li></ul></li>
-      <li class="nav-dropdown"><button class="nav-dropdown-btn">Resources <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 4l4 4 4-4"/></svg></button><ul class="nav-dropdown-menu"><li><a href="blog/index.html">Blog &amp; Guides</a></li><li><a href="cost-calculator.html">Cost Calculator</a></li><li><a href="faq.html">FAQ</a></li><li><a href="referral.html">Referral</a></li></ul></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-    <a href="audit.html" class="btn-audit">Free Audit</a>
-    <a href="contact.html" class="btn btn-primary nav-cta">Get in touch <span aria-hidden="true">→</span></a>
-    <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h16M3 11h16M3 16h16"/></svg>
-    </button>
-  </div>
-</nav>
+<script src="js/main.js"></script>
 
-<section class="page-hero">
+<!-- ── HERO ── -->
+<section class="svc-hero">
   <div class="container">
-    <div class="page-hero-inner">
-      <div class="eyebrow">What We Do</div>
-      <h1>A real safety team, <span class="serif-italic">delivered as a service.</span></h1>
-      <p class="lede">Every service below is built to work inside a monthly subscription &mdash; practical, repeatable, and priced for SMEs. Most clients start with the package that fits them best, then add or drop services as their business changes.</p>
-    </div>
+    <div class="eyebrow">What We Do</div>
+    <h1>Safety and compliance services<br>built for Singapore SMEs.</h1>
+    <p>Every service below maps to a subscription tier. Pick the one that fits — or start with a free consultation and we'll tell you exactly what you need.</p>
+    <a href="/intake.html" class="svc-hero-cta">
+      Get a free consultation
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
   </div>
 </section>
 
-<section style="padding: 40px 0 100px;">
+<!-- ── WSH RETAINER SERVICES ── -->
+<section class="svc-section" id="wsh-retainer">
   <div class="container">
-    <div class="services-list">
+    <div class="svc-section-heading">
+      <span class="section-tag">WSH Retainer</span>
+    </div>
+    <h2 class="svc-section-title">Workplace Safety &amp; Health Services</h2>
+    <p class="svc-section-sub">MOM-compliant WSH support delivered as a monthly subscription. No full-time hire. No surprise invoices.</p>
 
-      <div class="service-row-item">
-        <div>
-          <div class="service-row-number">01 / Core</div>
-          <h3>Risk <em>Assessments</em></h3>
-          <div class="service-tags">
-            <span class="service-tag">Watch</span>
-            <span class="service-tag">Guard</span>
-            <span class="service-tag featured">Overwatch</span>
-          </div>
+    <div class="svc-grid">
+
+      <!-- Risk Assessments -->
+      <div class="svc-card">
+        <div class="svc-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
         </div>
-        <div class="service-row-content">
-          <p>A proper Risk Assessment (RA) is the foundation of every compliant WSH system in Singapore &mdash; and the document MOM officers ask for first. We identify hazards across your operation, rate their likelihood and severity, and document the controls you already have (plus the ones you're missing).</p>
-          <p>Our RAs are written specifically for your site and how your team actually works &mdash; not generic templates with your logo slapped on. Every RA is reviewed and signed off by a MOM-registered WSH Officer.</p>
-          <ul>
-            <li>On-site hazard walkthrough</li>
-            <li>Task-based risk analysis</li>
-            <li>Likelihood  severity matrix</li>
-            <li>Control measures & residual risk</li>
-            <li>Annual review schedule</li>
-            <li>MOM-ready formatting</li>
-          </ul>
+        <div class="svc-tier-badges">
+          <span class="tier-badge tier-watch">Watch</span>
+          <span class="tier-badge tier-guard">Guard</span>
+          <span class="tier-badge tier-overwatch">Overwatch</span>
         </div>
+        <h3>Risk Assessments</h3>
+        <p>Site-specific RAs written for how your team actually works — not generic templates. MOM-ready, signed by a registered WSHO.</p>
+        <a href="/intake.html" class="svc-card-cta orange">Get started &rarr;</a>
+        <a href="https://wa.me/6589534583?text=Hi%20OSS%2C%20I%20need%20a%20Risk%20Assessment." class="svc-wa-link" target="_blank" rel="noopener">Prefer WhatsApp? Message us &rarr;</a>
       </div>
 
-      <div class="service-row-item">
-        <div>
-          <div class="service-row-number">02 / Core</div>
-          <h3>Safe Work <em>Procedures</em></h3>
-          <div class="service-tags">
-            <span class="service-tag">Watch</span>
-            <span class="service-tag">Guard</span>
-            <span class="service-tag featured">Overwatch</span>
-          </div>
+      <!-- Safe Work Procedures -->
+      <div class="svc-card">
+        <div class="svc-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
         </div>
-        <div class="service-row-content">
-          <p>Safe Work Procedures (SWPs) translate your Risk Assessment into step-by-step instructions your team can actually follow. Without them, even the best-written RA is just paperwork.</p>
-          <p>We write SWPs that match your real workflow &mdash; in English, simple Mandarin, or Malay as needed &mdash; so your staff can follow them on the floor without decoding jargon.</p>
-          <ul>
-            <li>Task-specific step-by-step guides</li>
-            <li>PPE and equipment requirements</li>
-            <li>Emergency response steps</li>
-            <li>Multi-language versions available</li>
-            <li>Printable floor/kitchen posters</li>
-            <li>Digital copies for onboarding</li>
-          </ul>
+        <div class="svc-tier-badges">
+          <span class="tier-badge tier-watch">Watch</span>
+          <span class="tier-badge tier-guard">Guard</span>
+          <span class="tier-badge tier-overwatch">Overwatch</span>
         </div>
+        <h3>Safe Work Procedures</h3>
+        <p>Step-by-step SWPs your team can follow on the floor. Available in English, Mandarin, or Malay. Printable and digital formats included.</p>
+        <a href="/intake.html" class="svc-card-cta orange">Get started &rarr;</a>
+        <a href="https://wa.me/6589534583?text=Hi%20OSS%2C%20I%20need%20Safe%20Work%20Procedures." class="svc-wa-link" target="_blank" rel="noopener">Prefer WhatsApp? Message us &rarr;</a>
       </div>
 
-      <div class="service-row-item">
-        <div>
-          <div class="service-row-number">03 / Ongoing</div>
-          <h3>Monthly Site <em>Inspections</em></h3>
-          <div class="service-tags">
-            <span class="service-tag">Guard</span>
-            <span class="service-tag featured">Overwatch</span>
-          </div>
+      <!-- Monthly Site Inspections -->
+      <div class="svc-card">
+        <div class="svc-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         </div>
-        <div class="service-row-content">
-          <p>The difference between a safe workplace and one that just has paperwork is whether someone qualified is physically checking things regularly. Every month, we visit your site, walk the floor, and inspect against your documented controls.</p>
-          <p>You get a written report the same week &mdash; what we saw, what needs attention, and what's improved since last time. Issues get flagged before they become incidents or MOM notices.</p>
-          <ul>
-            <li>Monthly walk-through inspection</li>
-            <li>Written report with photos</li>
-            <li>Priority-rated action items</li>
-            <li>Trend analysis over time</li>
-            <li>Housekeeping & PPE audits</li>
-            <li>Equipment & environment checks</li>
-          </ul>
+        <div class="svc-tier-badges">
+          <span class="tier-badge tier-guard">Guard</span>
+          <span class="tier-badge tier-overwatch">Overwatch</span>
         </div>
+        <h3>Monthly Site Inspections</h3>
+        <p>A qualified WSHO physically walks your site every month. Written report delivered the same week — findings, risk ratings, and corrective actions.</p>
+        <a href="/intake.html" class="svc-card-cta orange">Get started &rarr;</a>
+        <a href="https://wa.me/6589534583?text=Hi%20OSS%2C%20I%20need%20monthly%20site%20inspections." class="svc-wa-link" target="_blank" rel="noopener">Prefer WhatsApp? Message us &rarr;</a>
       </div>
 
-      <div class="service-row-item">
-        <div>
-          <div class="service-row-number">04 / Ongoing</div>
-          <h3>Compliance <em>Documentation</em></h3>
-          <div class="service-tags">
-            <span class="service-tag">Watch</span>
-            <span class="service-tag">Guard</span>
-            <span class="service-tag featured">Overwatch</span>
-          </div>
+      <!-- Compliance Documentation -->
+      <div class="svc-card">
+        <div class="svc-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>
         </div>
-        <div class="service-row-content">
-          <p>The WSH Act and its regulations require you to keep &mdash; and regularly update &mdash; a specific set of records. Most SMEs either have these scattered across staff laptops, missing entirely, or written once and never touched again.</p>
-          <p>We build you a single, organised compliance folder (digital and physical) and keep it current. If MOM walks in, it takes five minutes to show them exactly what they need.</p>
-          <ul>
-            <li>Central compliance folder system</li>
-            <li>WSH policy & commitment statement</li>
-            <li>Training records & sign-offs</li>
-            <li>Incident & near-miss register</li>
-            <li>Equipment inspection logs</li>
-            <li>Chemical & SDS management</li>
-          </ul>
+        <div class="svc-tier-badges">
+          <span class="tier-badge tier-watch">Watch</span>
+          <span class="tier-badge tier-guard">Guard</span>
+          <span class="tier-badge tier-overwatch">Overwatch</span>
         </div>
+        <h3>Compliance Documentation</h3>
+        <p>A single, organised compliance folder — digital and physical — kept current. If MOM walks in, you're ready in five minutes.</p>
+        <a href="/intake.html" class="svc-card-cta orange">Get started &rarr;</a>
+        <a href="https://wa.me/6589534583?text=Hi%20OSS%2C%20I%20need%20help%20with%20compliance%20documentation." class="svc-wa-link" target="_blank" rel="noopener">Prefer WhatsApp? Message us &rarr;</a>
       </div>
 
-      <div class="service-row-item">
-        <div>
-          <div class="service-row-number">05 / Specialist</div>
-          <h3>Fractional <em>WSHO</em> Service</h3>
-          <div class="service-tags">
-            <span class="service-tag featured">Overwatch</span>
-          </div>
+      <!-- Fractional WSHO -->
+      <div class="svc-card">
+        <div class="svc-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
-        <div class="service-row-content">
-          <p>Certain industries and project sizes require a MOM-registered Workplace Safety and Health Officer (WSHO) appointed to the business. Hiring one full-time costs S$60,000&mdash;S$120,000 a year. Most SMEs don't need that &mdash; they need the credential and presence, on-call, when it matters.</p>
-          <p>With Overwatch, we're named as your appointed WSHO on MOM records. You get the compliance standing of a full-time safety professional at a fraction of the cost.</p>
-          <ul>
-            <li>MOM-registered WSHO appointment</li>
-            <li>Weekly on-site presence</li>
-            <li>Direct MOM correspondence handling</li>
-            <li>Sign-off on risk documentation</li>
-            <li>Represent you in investigations</li>
-            <li>24-hour emergency response</li>
-          </ul>
+        <div class="svc-tier-badges">
+          <span class="tier-badge tier-overwatch">Overwatch</span>
         </div>
+        <h3>Fractional WSHO Appointment</h3>
+        <p>Named as your appointed WSHO on MOM records. You get the compliance standing of a full-time safety professional — at a fraction of the cost.</p>
+        <a href="/intake.html" class="svc-card-cta orange">Get started &rarr;</a>
+        <a href="https://wa.me/6589534583?text=Hi%20OSS%2C%20I%20need%20a%20fractional%20WSHO%20appointment." class="svc-wa-link" target="_blank" rel="noopener">Prefer WhatsApp? Message us &rarr;</a>
       </div>
 
-      <div class="service-row-item" id="bizsafe">
-        <div>
-          <div class="service-row-number">06 / Specialist</div>
-          <h3>bizSAFE Application <em>Support</em></h3>
-          <div class="service-tags">
-            <span class="service-tag">Guard</span>
-            <span class="service-tag featured">Overwatch</span>
-            <span class="service-tag">Add-on</span>
-          </div>
+      <!-- BizSAFE -->
+      <div class="svc-card" id="bizsafe">
+        <div class="svc-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
         </div>
-        <div class="service-row-content">
-          <p>bizSAFE Level 3 is often required to tender for government contracts, main contractor projects, or certain B2B deals. Many SMEs put it off because the application looks complicated &mdash; it's not, but getting it right the first time saves weeks.</p>
-          <p>We prepare your Risk Management Implementation (RMI) package, submit through the WSH Council, and coordinate your external audit. You get certified without the admin headache.</p>
-          <ul>
-            <li>bizSAFE Level 1&mdash;3 guidance</li>
-            <li>RMI plan preparation</li>
-            <li>External auditor coordination</li>
-            <li>Gap-closure support</li>
-            <li>Renewal management</li>
-            <li>Upgrade path to Star / Partner</li>
-          </ul>
+        <div class="svc-tier-badges">
+          <span class="tier-badge tier-guard">Guard</span>
+          <span class="tier-badge tier-overwatch">Overwatch</span>
+          <span class="tier-badge tier-addon">Add-on</span>
         </div>
+        <h3>bizSAFE Application Support</h3>
+        <p>End-to-end support from Level 1 through Level Star. We prepare your RMI package, coordinate the external audit, and manage the paperwork. You just show up.</p>
+        <a href="/intake.html" class="svc-card-cta orange">Get started &rarr;</a>
+        <a href="https://wa.me/6589534583?text=Hi%20OSS%2C%20I%20need%20help%20with%20bizSAFE." class="svc-wa-link" target="_blank" rel="noopener">Prefer WhatsApp? Message us &rarr;</a>
       </div>
 
-      <div class="service-row-item">
-        <div>
-          <div class="service-row-number">07 / Specialist</div>
-          <h3>WSH Training <em>Coordination</em></h3>
-          <div class="service-tags">
-            <span class="service-tag">Guard</span>
-            <span class="service-tag featured">Overwatch</span>
-            <span class="service-tag">Add-on</span>
-          </div>
+      <!-- Training -->
+      <div class="svc-card">
+        <div class="svc-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
         </div>
-        <div class="service-row-content">
-          <p>Depending on your industry, your team needs specific training &mdash; bizSAFE Level 1, manual handling, working at heights, forklift operation, first aid, and more. Some is mandatory. Some is just sensible.</p>
-          <p>We map your operation against training requirements, book your team into accredited courses (often with WSQ / SkillsFuture subsidies), and keep your training records up to date.</p>
-          <ul>
-            <li>Training needs analysis</li>
-            <li>Accredited course booking</li>
-            <li>WSQ / SkillsFuture guidance</li>
-            <li>In-house toolbox talks</li>
-            <li>Refresher scheduling</li>
-            <li>Certification tracking</li>
-          </ul>
+        <div class="svc-tier-badges">
+          <span class="tier-badge tier-guard">Guard</span>
+          <span class="tier-badge tier-overwatch">Overwatch</span>
+          <span class="tier-badge tier-addon">Add-on</span>
         </div>
+        <h3>WSH Training Coordination</h3>
+        <p>We map your team's training requirements, book accredited courses — often with WSQ/SkillsFuture subsidies — and keep your records up to date.</p>
+        <a href="/intake.html" class="svc-card-cta orange">Get started &rarr;</a>
+        <a href="https://wa.me/6589534583?text=Hi%20OSS%2C%20I%20need%20WSH%20training%20coordination." class="svc-wa-link" target="_blank" rel="noopener">Prefer WhatsApp? Message us &rarr;</a>
       </div>
 
-      <div class="service-row-item">
-        <div>
-          <div class="service-row-number">08 / Response</div>
-          <h3>Incident <em>Investigation</em></h3>
-          <div class="service-tags">
-            <span class="service-tag">Guard</span>
-            <span class="service-tag featured">Overwatch</span>
-          </div>
+      <!-- Incident Investigation -->
+      <div class="svc-card">
+        <div class="svc-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
         </div>
-        <div class="service-row-content">
-          <p>When something goes wrong &mdash; a worker injured, equipment failure, near-miss &mdash; what you do in the first 48 hours matters. MOM must be notified of certain incidents within specific time frames. Evidence must be preserved. Statements must be taken. Root causes must be identified so it doesn't happen again.</p>
-          <p>We walk you through every step, draft your MOM notification, run the investigation, and document the lessons learned. You focus on your team. We handle the process.</p>
-          <ul>
-            <li>MOM notification support</li>
-            <li>Scene documentation</li>
-            <li>Witness interviews</li>
-            <li>Root cause analysis</li>
-            <li>Corrective action planning</li>
-            <li>Post-incident review</li>
-          </ul>
+        <div class="svc-tier-badges">
+          <span class="tier-badge tier-guard">Guard</span>
+          <span class="tier-badge tier-overwatch">Overwatch</span>
         </div>
+        <h3>Incident Investigation</h3>
+        <p>WSHO-led investigation within 24 hours. MOM notification, scene documentation, root cause analysis, and corrective action plan — all handled for you.</p>
+        <a href="/intake.html" class="svc-card-cta orange">Get started &rarr;</a>
+        <a href="https://wa.me/6589534583?text=Hi%20OSS%2C%20I%20need%20incident%20investigation%20support." class="svc-wa-link" target="_blank" rel="noopener">Prefer WhatsApp? Message us &rarr;</a>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- Summary / package routing -->
-<section class="final-cta">
+<!-- ── DPO / PDPA ── -->
+<section class="svc-section svc-section-alt" id="pdpa">
   <div class="container">
-    <div class="final-cta-inner">
-      <div class="final-cta-content">
-        <div class="eyebrow">Not sure which services you need?</div>
-        <h2>That's what the free consultation is <em>for.</em></h2>
-        <p>Tell us about your business &mdash; what you do, how many people, what you're worried about. We'll tell you exactly which services apply, which don't, and which package makes sense. Straight answers only.</p>
-      </div>
-      <div class="final-cta-actions">
-        <a href="contact.html" class="btn btn-accent btn-large">Get in touch <span aria-hidden="true">&rarr;</span></a>
-        <a href="packages.html" class="btn btn-primary btn-large" style="background: var(--cream-50); color: var(--navy-900);">Compare packages <span aria-hidden="true">&rarr;</span></a>
-        <div class="final-cta-note">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="7" cy="7" r="6"/><path d="M7 4v3l2 2"/></svg>
-          30 minutes. No obligation. No sales pressure.
+    <div class="svc-section-heading">
+      <span class="section-tag">DPO / PDPA</span>
+    </div>
+    <h2 class="svc-section-title">Data Protection Officer &amp; PDPA Compliance</h2>
+    <p class="svc-section-sub">Singapore's Personal Data Protection Act applies to every business that collects, uses, or discloses personal data. Most SMEs are exposed and don't know it.</p>
+
+    <div class="svc-grid">
+
+      <!-- Outsourced DPO -->
+      <div class="svc-card svc-card-wide">
+        <div class="svc-card-body">
+          <div class="svc-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          </div>
+          <div class="svc-tier-badges">
+            <span class="tier-badge tier-overwatch">Overwatch</span>
+            <span class="tier-badge tier-addon">Add-on</span>
+          </div>
+          <h3>Outsourced Data Protection Officer (DPO)</h3>
+          <p>We act as your named DPO — registered with the PDPC, handling data protection queries, breach response, and annual compliance reviews. No in-house hire required.</p>
+          <a href="/intake.html" class="svc-card-cta orange" style="margin-top:8px;">Get a quote &rarr;</a>
+          <a href="https://wa.me/6589534583?text=Hi%20OSS%2C%20I%20need%20an%20outsourced%20DPO." class="svc-wa-link" target="_blank" rel="noopener">Prefer WhatsApp? Message us &rarr;</a>
+        </div>
+        <div class="svc-card-detail">
+          <ul>
+            <li>Named DPO on PDPC records</li>
+            <li>Data Protection Policy drafting</li>
+            <li>Staff awareness briefing</li>
+            <li>Data inventory &amp; mapping</li>
+            <li>Breach notification support</li>
+            <li>Annual compliance review</li>
+            <li>Vendor due diligence</li>
+            <li>DPIA for high-risk processing</li>
+          </ul>
         </div>
       </div>
+
+      <!-- PDPA Audit -->
+      <div class="svc-card">
+        <div class="svc-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        </div>
+        <div class="svc-tier-badges">
+          <span class="tier-badge tier-addon">Add-on</span>
+        </div>
+        <h3>PDPA Gap Assessment</h3>
+        <p>A structured review of how your business collects, stores, and shares personal data — with a prioritised action plan to close the gaps before they become breaches.</p>
+        <a href="/intake.html" class="svc-card-cta orange">Get a quote &rarr;</a>
+        <a href="https://wa.me/6589534583?text=Hi%20OSS%2C%20I%20need%20a%20PDPA%20gap%20assessment." class="svc-wa-link" target="_blank" rel="noopener">Prefer WhatsApp? Message us &rarr;</a>
+      </div>
+
+      <!-- Data Protection Policy -->
+      <div class="svc-card">
+        <div class="svc-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+        <div class="svc-tier-badges">
+          <span class="tier-badge tier-addon">Add-on</span>
+        </div>
+        <h3>Data Protection Policy &amp; Notices</h3>
+        <p>PDPA-compliant policies, consent forms, and privacy notices drafted for your business — in plain English your team and customers can actually understand.</p>
+        <a href="/intake.html" class="svc-card-cta orange">Get a quote &rarr;</a>
+        <a href="https://wa.me/6589534583?text=Hi%20OSS%2C%20I%20need%20a%20Data%20Protection%20Policy." class="svc-wa-link" target="_blank" rel="noopener">Prefer WhatsApp? Message us &rarr;</a>
+      </div>
+
     </div>
   </div>
 </section>
 
+<!-- ── BOTTOM CTA BAND ── -->
+<section class="svc-cta-band">
+  <div class="container">
+    <h2>Not sure what you need?</h2>
+    <p>Tell us about your business. We'll tell you exactly which services apply — and which ones you don't need to pay for.</p>
+    <div class="svc-cta-btn-row">
+      <a href="/intake.html" class="btn-primary-light">
+        Start free consultation
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="/packages.html" class="btn-ghost-light">Compare packages &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
@@ -293,8 +525,8 @@
           <li><a href="why-oss.html">Why OSS</a></li>
           <li><a href="blog/index.html">Resources</a></li>
           <li><a href="contact.html">Contact</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms</a></li>
         </ul>
       </div>
       <div>
@@ -315,6 +547,5 @@
   </div>
 </footer>
 
-<script src="js/main.js"></script>
 </body>
 </html>
