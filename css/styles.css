@@ -68,13 +68,22 @@
 html { scroll-behavior: smooth; font-size: 16px; }
 body {
   font-family: var(--font-body);
-  background: var(--cream-50);
+  background-color: var(--cream-50);
   color: var(--navy-900);
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   position: relative;
+}
+
+/* Homepage-only: single large centered logo watermark */
+body.home-watermark {
+  background-image: url("../assets/logo-watermark.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: 70% auto;
 }
 
 /* Subtle grain overlay */
