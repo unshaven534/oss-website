@@ -250,6 +250,14 @@ document.addEventListener('DOMContentLoaded', () => {
         <a href="/intake.html" class="oss-btn-primary">Discuss your requirements</a>
       </div>
 
+      <button type="button" class="oss-theme-toggle" id="ossThemeToggle" aria-label="Toggle dark mode" aria-pressed="false">
+        <span class="ott-track">
+          <svg class="ott-icon ott-icon-sun" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="ott-icon ott-icon-moon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+          <span class="ott-knob"></span>
+        </span>
+      </button>
+
       <button class="oss-hamburger" id="ossHamburger" aria-label="Open navigation" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -341,6 +349,19 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.style.overflow = '';
     });
   });
+
+  /* ---- Dark mode toggle ---- */
+  const root = document.documentElement;
+  const themeBtn = document.getElementById('ossThemeToggle');
+  if (themeBtn) {
+    themeBtn.setAttribute('aria-pressed', root.getAttribute('data-theme') === 'dark');
+    themeBtn.addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      themeBtn.setAttribute('aria-pressed', next === 'dark');
+      try { localStorage.setItem('oss-theme', next); } catch (e) {}
+    });
+  }
 
   /* ---- Header shadow on scroll ---- */
   const header = document.getElementById('oss-header');
