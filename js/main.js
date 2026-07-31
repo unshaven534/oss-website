@@ -426,3 +426,114 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 });
+
+/* ===== OSS Safety Assistant Chat Widget ===== */
+(function initOssChatWidget() {
+  if (document.getElementById('ossChatLauncher')) return;
+
+  var MAX_SESSION_MESSAGES = 25; // soft client-side cap; real protection is Cloudflare rate limiting
+
+  var launcher = document.createElement('button');
+  launcher.id = 'ossChatLauncher';
+  launcher.className = 'oss-chat-launcher';
+  launcher.setAttribute('aria-label', 'Open Safety Assistant chat');
+  launcher.innerHTML =
+    '<svg class="oss-chat-chat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>' +
+    '<svg class="oss-chat-close-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>';
+
+  var panel = document.createElement('div');
+  panel.id = 'ossChatPanel';
+  panel.className = 'oss-chat-panel';
+  panel.innerHTML =
+    '<div class="oss-chat-header">' +
+    '  <span class="oss-chat-header-dot"></span>' +
+    '  <div class="oss-chat-header-text">' +
+    '    <div class="oss-chat-header-title">OSS Safety Assistant</div>' +
+    '    <div class="oss-chat-header-sub">WSH questions, answered</div>' +
+    '  </div>' +
+    '</div>' +
+    '<div class="oss-chat-messages" id="ossChatMessages"></div>' +
+    '<div class="oss-chat-disclaimer">General WSH information only \u2014 not a substitute for a site-specific risk assessment or your WSHO\u2019s sign-off.</div>' +
+    '<div class="oss-chat-inputrow">' +
+    '  <input type="text" class="oss-chat-input" id="ossChatInput" placeholder="Ask a safety question\u2026" autocomplete="off">' +
+    '  <button class="oss-chat-send" id="ossChatSend" aria-label="Send message">' +
+    '    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>' +
+    '  </button>' +
+    '</div>';
+
+  document.body.appendChild(launcher);
+  document.body.appendChild(panel);
+
+  var messagesEl = document.getElementById('ossChatMessages');
+  var inputEl = document.getElementById('ossChatInput');
+  var sendBtn = document.getElementById('ossChatSend');
+  var history = [];
+  var greeted = false;
+
+  function addMessage(role, text) {
+    var div = document.createElement('div');
+    div.className = 'oss-chat-msg ' + (role === 'user' ? 'user' : 'bot');
+    div.textContent = text;
+    messagesEl.appendChild(div);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+    return div;
+  }
+
+  function togglePanel() {
+    var isOpen = panel.classList.toggle('open');
+    launcher.classList.toggle('open', isOpen);
+    launcher.setAttribute('aria-label', isOpen ? 'Close Safety Assistant chat' : 'Open Safety Assistant chat');
+    if (isOpen && !greeted) {
+      greeted = true;
+      addMessage('bot', "Hi, I'm the OSS Safety Assistant. Ask me anything about Singapore WSH regulations, BizSAFE, risk assessments, or workplace safety practices.");
+      inputEl.focus();
+    }
+  }
+
+  launcher.addEventListener('click', togglePanel);
+
+  async function sendMessage() {
+    var text = inputEl.value.trim();
+    if (!text) return;
+
+    if (history.length >= MAX_SESSION_MESSAGES) {
+      addMessage('bot', "We've covered a lot in this chat \u2014 for anything further, reach the team directly at admin@overwatch.com.sg or +65 8953 4583.");
+      return;
+    }
+
+    addMessage('user', text);
+    history.push({ role: 'user', content: text });
+    inputEl.value = '';
+    sendBtn.disabled = true;
+
+    var typingEl = addMessage('bot', 'Typing\u2026');
+    typingEl.classList.add('typing');
+
+    try {
+      var res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: history })
+      });
+      var data = await res.json();
+      typingEl.remove();
+      if (res.ok && data.reply) {
+        addMessage('bot', data.reply);
+        history.push({ role: 'assistant', content: data.reply });
+      } else {
+        addMessage('bot', "Sorry, I couldn't get a response just now. Please try again, or reach us directly at admin@overwatch.com.sg.");
+      }
+    } catch (err) {
+      typingEl.remove();
+      addMessage('bot', "Sorry, something went wrong. Please try again, or reach us directly at admin@overwatch.com.sg.");
+    } finally {
+      sendBtn.disabled = false;
+      inputEl.focus();
+    }
+  }
+
+  sendBtn.addEventListener('click', sendMessage);
+  inputEl.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') sendMessage();
+  });
+})();
