@@ -2682,7 +2682,7 @@ button.nav-toggle,
   display: block;
   width: 22px;
   height: 2px;
-  background: rgba(255,255,255,0.8);
+  background: #ffffff;
   border-radius: 2px;
   transition: transform 0.25s, opacity 0.25s;
 }
