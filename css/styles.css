@@ -2736,8 +2736,10 @@ button.nav-toggle,
 @media (max-width: 600px) {
   .oss-topbar-inner { padding: 0 16px; }
   .topbar-divider-hide { display: none; }
-  .oss-header-inner { padding: 0 16px; }
+  .oss-header-inner { padding: 0 16px; gap: 10px; }
   .oss-header-spacer { height: 96px; }
+  .oss-logo-text { display: none; }
+  .oss-logo-img { height: 30px; }
 }
 
 /* Remove old sidebar styles — nav is now top-bar */
